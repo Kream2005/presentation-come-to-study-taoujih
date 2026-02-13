@@ -464,7 +464,71 @@ const ConfusionSlide = () => {
   );
 };
 
-// ─── SLIDE 8 (moved): Erreurs Courantes ─────────────────────
+// ─── SLIDE 9: La Solution — Come To Study Tawjeeh ───────────
+
+const ctsServices = [
+  { id: 1, emoji: '🧭', titleFr: 'Orientation Personnalisée', titleAr: 'توجيه شخصي', descFr: 'Accompagnement sur-mesure : profil, notes, passions et ambitions pour trouver LE parcours idéal.', color: '#1565c0' },
+  { id: 2, emoji: '🏫', titleFr: 'Décryptage des Écoles', titleAr: 'شرح المدارس والتخصصات', descFr: 'Tout sur chaque école et filière : ENSA, ENCG, CPGE, médecine, EST, FST… zéro zone d\'ombre.', color: '#00897b' },
+  { id: 3, emoji: '📝', titleFr: 'Inscription Plateformes', titleAr: 'التسجيل ف المنصات', descFr: 'On gère vos inscriptions : Tawjihi.ma, concours, dossiers — zéro deadline ratée.', color: '#e65100' },
+  { id: 4, emoji: '🏆', titleFr: 'Prépa Concours', titleAr: 'التحضير للمباريات', descFr: 'ENSA, ENSAM, ENCG, ISCAE, Médecine : cours, simulations et stratégie de réussite.', color: '#6a1b9a' },
+  { id: 5, emoji: '🧠', titleFr: 'Soutien Psychologique', titleAr: 'مواكبة نفسية', descFr: 'Stress, confiance, motivation — un suivi pour aborder examens et choix sereinement.', color: '#c62828' },
+  { id: 6, emoji: '📊', titleFr: 'Suivi Académique', titleAr: 'متابعة أكاديمية مستمرة', descFr: 'Bilans réguliers, ajustements et une équipe toujours disponible.', color: '#2e7d32' }
+];
+
+const SolutionSlide = () => (
+  <Slide backgroundColor="#0a1628" padding={0}>
+    <div className="cts-slide">
+      {/* Animated background elements */}
+      <div className="cts-orb cts-orb-1" />
+      <div className="cts-orb cts-orb-2" />
+      <div className="cts-orb cts-orb-3" />
+      <div className="cts-grid-overlay" />
+
+      {/* Left hero panel */}
+      <div className="cts-hero">
+        <div className="cts-hero__glow" />
+        <img src={companyLogo} alt="Come To Study" className="cts-hero__logo" />
+        <div className="cts-hero__badge">✨ LA SOLUTION</div>
+        <h2 className="cts-hero__title">Come To Study</h2>
+        <h2 className="cts-hero__title cts-hero__title--accent">Tawjeeh</h2>
+        <p className="cts-hero__tagline">Le centre d'orientation N°1<br />à Khouribga</p>
+        <p className="cts-hero__tagline-ar">المركز رقم 1 ديال التوجيه ف خريبكة</p>
+        <div className="cts-hero__tags">
+          {['ENSA', 'ENSAM', 'ENCG', 'ISCAE', 'Médecine', 'ENA', 'ISPITS'].map(tag => (
+            <span key={tag} className="cts-hero__tag">{tag}</span>
+          ))}
+        </div>
+        <div className="cts-hero__contact">
+          <span>📍 Khouribga</span>
+          <span>📞 Contact</span>
+          <span>🌐 Réseaux</span>
+        </div>
+      </div>
+
+      {/* Right services panel */}
+      <div className="cts-services">
+        <h3 className="cts-services__heading">Nos Services</h3>
+        <p className="cts-services__heading-ar">الخدمات ديالنا</p>
+        <div className="cts-services__list">
+          {ctsServices.map((s, i) => (
+            <div key={s.id} className="cts-svc" style={{ '--cts-color': s.color, '--cts-delay': `${0.2 + i * 0.08}s` }}>
+              <div className="cts-svc__icon">{s.emoji}</div>
+              <div className="cts-svc__body">
+                <div className="cts-svc__titles">
+                  <strong className="cts-svc__title">{s.titleFr}</strong>
+                  <span className="cts-svc__title-ar">{s.titleAr}</span>
+                </div>
+                <p className="cts-svc__desc">{s.descFr}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Slide>
+);
+
+// ─── SLIDE 9 (moved): Erreurs Courantes ─────────────────────
 
 const problems = [
   {
@@ -1337,6 +1401,7 @@ const Presentation = () => (
     <EcolesSlide />
     <CriteresSlide />
     <ErreursSlide />
+    <SolutionSlide />
   </Deck>
 );
 

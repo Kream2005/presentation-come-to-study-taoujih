@@ -3050,3 +3050,354 @@ body {
   line-height: 2;
   margin: 0;
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   SLIDE 9 — LA SOLUTION : Come To Study Tawjeeh (Premium)
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes ctsSvcEntrance {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ctsOrbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50%      { transform: translate(10px, -15px) scale(1.08); opacity: 0.2; }
+}
+
+@keyframes ctsLogoGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(66, 165, 245, 0.2), 0 0 60px rgba(66, 165, 245, 0.08); }
+  50%      { box-shadow: 0 0 50px rgba(66, 165, 245, 0.35), 0 0 90px rgba(66, 165, 245, 0.15); }
+}
+
+@keyframes ctsBadgeShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes ctsTagFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* ─── Slide wrapper — dark split layout ───────────────────── */
+.cts-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, #0a1628 0%, #0f2040 40%, #122450 70%, #0d1a35 100%);
+  overflow: hidden;
+}
+
+/* Animated orbs */
+.cts-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cts-orb-1 {
+  width: 350px;
+  height: 350px;
+  top: -100px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(33, 150, 243, 0.12) 0%, transparent 70%);
+  animation: ctsOrbFloat 10s ease-in-out infinite;
+}
+
+.cts-orb-2 {
+  width: 280px;
+  height: 280px;
+  bottom: -80px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(103, 58, 183, 0.10) 0%, transparent 70%);
+  animation: ctsOrbFloat 13s ease-in-out infinite 3s;
+}
+
+.cts-orb-3 {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(0, 230, 118, 0.06) 0%, transparent 70%);
+  animation: ctsOrbFloat 8s ease-in-out infinite 1.5s;
+}
+
+/* Subtle grid overlay */
+.cts-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 50%, black 20%, transparent 100%);
+}
+
+/* ─── LEFT: Hero panel ────────────────────────────────────── */
+.cts-hero {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  gap: 6px;
+}
+
+.cts-hero__glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(33, 150, 243, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cts-hero__logo {
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.08);
+  padding: 10px;
+  border: 2px solid rgba(66, 165, 245, 0.2);
+  animation: ctsLogoGlow 4s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+.cts-hero__badge {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #42a5f5;
+  padding: 4px 18px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, rgba(66, 165, 245, 0.1), rgba(66, 165, 245, 0.02), rgba(66, 165, 245, 0.1));
+  background-size: 200% 100%;
+  border: 1px solid rgba(66, 165, 245, 0.15);
+  animation: ctsBadgeShimmer 5s ease-in-out infinite;
+}
+
+.cts-hero__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+}
+
+.cts-hero__title--accent {
+  font-size: 34px;
+  background: linear-gradient(135deg, #42a5f5, #26c6da, #66bb6a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.cts-hero__tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cts-hero__tagline-ar {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #42a5f5;
+  opacity: 0.65;
+  direction: rtl;
+  margin: 0;
+}
+
+/* Concours tags */
+.cts-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.cts-hero__tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #64b5f6;
+  padding: 3px 10px;
+  border-radius: 14px;
+  background: rgba(66, 165, 245, 0.12);
+  border: 1px solid rgba(66, 165, 245, 0.22);
+  letter-spacing: 1px;
+  transition: all 0.25s;
+  animation: ctsTagFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.4s);
+}
+
+.cts-hero__tag:hover {
+  background: #42a5f5;
+  color: #0a1628;
+  transform: scale(1.08);
+}
+
+/* Contact */
+.cts-hero__contact {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.cts-hero__contact span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ─── RIGHT: Services panel ───────────────────────────────── */
+.cts-services {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px 24px 24px;
+  position: relative;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+.cts-services__heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1px;
+  letter-spacing: 0.5px;
+}
+
+.cts-services__heading-ar {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #42a5f5;
+  opacity: 0.6;
+  direction: rtl;
+  text-align: left;
+  margin: 0 0 12px;
+}
+
+.cts-services__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* ─── Service row card ────────────────────────────────────── */
+.cts-svc {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: ctsSvcEntrance 0.5s ease-out var(--cts-delay) both;
+  position: relative;
+  overflow: hidden;
+}
+
+.cts-svc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--cts-color);
+  opacity: 0.8;
+  border-radius: 14px 0 0 14px;
+  transition: opacity 0.3s;
+}
+
+.cts-svc:hover {
+  background: rgba(255, 255, 255, 0.10);
+  transform: translateX(4px);
+  border-color: color-mix(in srgb, var(--cts-color) 30%, transparent);
+}
+
+.cts-svc:hover::before {
+  opacity: 1;
+}
+
+.cts-svc__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--cts-color) 18%, rgba(255,255,255,0.05));
+  border: 1px solid color-mix(in srgb, var(--cts-color) 25%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.cts-svc__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cts-svc__titles {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.cts-svc__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.cts-svc__title-ar {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cts-color);
+  opacity: 0.7;
+  direction: rtl;
+}
+
+.cts-svc__desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.55;
+  margin: 0;
+}
