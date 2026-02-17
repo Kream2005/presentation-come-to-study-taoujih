@@ -42,7 +42,7 @@ const professors = [
     career: 'Spécialité / Matière',
     details:
       'Ajoutez ici une description détaillée du professeur : son parcours académique, ses années d\'expérience, ses spécialisations, ses réalisations et tout ce qui le distingue.',
-    accentColor: '#0097a7'
+    accentColor: '#1e88e5'
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const professors = [
     career: 'Spécialité / Matière',
     details:
       'Ajoutez ici une description détaillée du professeur : son parcours académique, ses années d\'expérience, ses spécialisations, ses réalisations et tout ce qui le distingue.',
-    accentColor: '#7b1fa2'
+    accentColor: '#42a5f5'
   }
 ];
 
@@ -83,7 +83,7 @@ const CustomTemplate = ({ slideNumber, numberOfSlides }) => (
 // ─── SLIDE 1: Title / Welcome ───────────────────────────────
 const TitleSlide = () => (
   <Slide
-    backgroundColor="#ffffff"
+    backgroundColor="#0a1628"
     padding={0}
   >
     <div className="title-slide-wrapper">
@@ -127,7 +127,7 @@ const TitleSlide = () => (
         <div className="title-main">
           <h1>
             Come To Study
-            <span>Taoujih</span>
+            <span>Tawjeeh</span>
           </h1>
         </div>
 
@@ -264,7 +264,7 @@ const ProfessorsSlide = () => {
   const [selectedProf, setSelectedProf] = useState(null);
 
   return (
-    <Slide backgroundColor="#f0f4ff" padding={0}>
+    <Slide backgroundColor="#b8d4f8" padding={0}>
       <div className="prof-slide">
         {/* Background decorations */}
         <div className="prof-bg-shape prof-bg-shape-1" />
@@ -311,7 +311,7 @@ const confusionPoints = [
     titleAr: 'ما عندهمش توجيه واضح',
     descFr: 'Sans accompagnement ni information claire, la majorité des étudiants choisissent leur filière au hasard ou suivent leurs amis — sans savoir ce qui les attend réellement.',
     descAr: 'بلا ما يكون عندهم شي حد يوجههم، بزاف ديال الطلبة كيختارو شي فيليار عشوائياً ولا كيمشيو مع صحابهم — بلا ما يعرفو شنو كيتسناهم.',
-    color: '#e53935'
+    color: '#1565c0'
   },
   {
     id: 2, emoji: '📚', icon: '⏳',
@@ -319,7 +319,7 @@ const confusionPoints = [
     titleAr: 'مغرقين فالباك الوطني',
     descFr: 'L\'examen national accapare tout le temps et l\'énergie. Les élèves passent des mois à réviser sans jamais se demander : "et après le Bac, je fais quoi ?"',
     descAr: 'الامتحان الوطني كياخد كل الوقت والطاقة. الطلبة كيبقاو شهور كيراجعو بلا ما يسولو راسهم: "من بعد الباك، شنو غادي ندير؟"',
-    color: '#f57c00'
+    color: '#1e88e5'
   },
   {
     id: 3, emoji: '🤷', icon: '❓',
@@ -327,7 +327,7 @@ const confusionPoints = [
     titleAr: 'ما عارفش شنو كاين أصلاً',
     descFr: 'ENSA, ENCG, CPGE, FST, EST ? La plupart des bacheliers ne connaissent même pas les noms des écoles, encore moins les conditions d\'accès ou les débouchés.',
     descAr: 'ENSA, ENCG, CPGE, FST, EST? أغلبية ديال الباشلوريين ما كيعرفوش حتى أسماء المدارس، بالك الشروط ديال الدخول ولا الآفاق المهنية.',
-    color: '#7b1fa2'
+    color: '#42a5f5'
   },
   {
     id: 4, emoji: '😴', icon: '🎉',
@@ -335,7 +335,7 @@ const confusionPoints = [
     titleAr: 'من بعد الباك: الراحة الزايدة',
     descFr: 'Le Bac est passé, la pression retombe. Et c\'est exactement là que beaucoup ratent les deadlines : concours, inscriptions, plateformes — tout leur échappe.',
     descAr: 'الباك سالا، الضغط نقص. وهاد الوقت بالضبط كيفوت بزاف ديال الطلبة الديدلاينات: كونكورات، تسجيلات، منصات — كلشي كيفلت ليهم.',
-    color: '#0097a7'
+    color: '#64b5f6'
   },
   {
     id: 5, emoji: '🔍', icon: '📵',
@@ -343,7 +343,7 @@ const confusionPoints = [
     titleAr: 'المعلومات قليلة ومشتتة',
     descFr: 'Les informations sont dispersées entre sites officiels, forums, et rumeurs. Aucun guichet unique. Les élèves se perdent entre des sources contradictoires et des données périmées.',
     descAr: 'المعلومات مفرقة بين المواقع الرسمية والفورومات والإشاعات. ما كاينش موقع واحد يجمع كلشي. الطلبة كيتوهو بين مصادر متناقضة ومعلومات قديمة.',
-    color: '#455a64'
+    color: '#0d47a1'
   },
   {
     id: 6, emoji: '🧠', icon: '💨',
@@ -351,7 +351,7 @@ const confusionPoints = [
     titleAr: 'كنسا وسلام',
     descFr: 'Entre le stress, les vacances et le manque de suivi, beaucoup d\'élèves oublient des deadlines cruciales. Pas de rappel, pas de suivi → pas d\'inscription.',
     descAr: 'بين الستريس والعطلة وقلة المتابعة، بزاف ديال الطلبة كينساو ديدلاينات مهمة بزاف. بلا تذكير، بلا متابعة = بلا تسجيل.',
-    color: '#c62828'
+    color: '#2196f3'
   }
 ];
 
@@ -410,7 +410,7 @@ const ConfusionSlide = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <Slide backgroundColor="#f8f6ff" padding={0}>
+    <Slide backgroundColor="#b0c8ee" padding={0}>
       <div className="conf-slide">
         <div className="conf-bg conf-bg-1" />
         <div className="conf-bg conf-bg-2" />
@@ -468,11 +468,11 @@ const ConfusionSlide = () => {
 
 const ctsServices = [
   { id: 1, emoji: '🧭', titleFr: 'Orientation Personnalisée', titleAr: 'توجيه شخصي', descFr: 'Accompagnement sur-mesure : profil, notes, passions et ambitions pour trouver LE parcours idéal.', color: '#1565c0' },
-  { id: 2, emoji: '🏫', titleFr: 'Décryptage des Écoles', titleAr: 'شرح المدارس والتخصصات', descFr: 'Tout sur chaque école et filière : ENSA, ENCG, CPGE, médecine, EST, FST… zéro zone d\'ombre.', color: '#00897b' },
-  { id: 3, emoji: '📝', titleFr: 'Inscription Plateformes', titleAr: 'التسجيل ف المنصات', descFr: 'On gère vos inscriptions : Tawjihi.ma, concours, dossiers — zéro deadline ratée.', color: '#e65100' },
-  { id: 4, emoji: '🏆', titleFr: 'Prépa Concours', titleAr: 'التحضير للمباريات', descFr: 'ENSA, ENSAM, ENCG, ISCAE, Médecine : cours, simulations et stratégie de réussite.', color: '#6a1b9a' },
-  { id: 5, emoji: '🧠', titleFr: 'Soutien Psychologique', titleAr: 'مواكبة نفسية', descFr: 'Stress, confiance, motivation — un suivi pour aborder examens et choix sereinement.', color: '#c62828' },
-  { id: 6, emoji: '📊', titleFr: 'Suivi Académique', titleAr: 'متابعة أكاديمية مستمرة', descFr: 'Bilans réguliers, ajustements et une équipe toujours disponible.', color: '#2e7d32' }
+  { id: 2, emoji: '🏫', titleFr: 'Décryptage des Écoles', titleAr: 'شرح المدارس والتخصصات', descFr: 'Tout sur chaque école et filière : ENSA, ENCG, CPGE, médecine, EST, FST… zéro zone d\'ombre.', color: '#1e88e5' },
+  { id: 3, emoji: '📝', titleFr: 'Inscription Plateformes', titleAr: 'التسجيل ف المنصات', descFr: 'On gère vos inscriptions : Tawjihi.ma, concours, dossiers — zéro deadline ratée.', color: '#42a5f5' },
+  { id: 4, emoji: '🏆', titleFr: 'Prépa Concours', titleAr: 'التحضير للمباريات', descFr: 'ENSA, ENSAM, ENCG, ISCAE, Médecine : cours, simulations et stratégie de réussite.', color: '#0d47a1' },
+  { id: 5, emoji: '🧠', titleFr: 'Soutien Psychologique', titleAr: 'مواكبة نفسية', descFr: 'Stress, confiance, motivation — un suivi pour aborder examens et choix sereinement.', color: '#64b5f6' },
+  { id: 6, emoji: '📊', titleFr: 'Suivi Académique', titleAr: 'متابعة أكاديمية مستمرة', descFr: 'Bilans réguliers, ajustements et une équipe toujours disponible.', color: '#2196f3' }
 ];
 
 const SolutionSlide = () => (
@@ -528,7 +528,171 @@ const SolutionSlide = () => (
   </Slide>
 );
 
-// ─── SLIDE 9 (moved): Erreurs Courantes ─────────────────────
+// ─── SLIDE 10: Pourquoi Nous ? (Why Us — Psychological Persuasion) ──
+
+const whyUsReasons = [
+  {
+    id: 1, emoji: '🏆', trigger: 'PREUVE SOCIALE',
+    titleFr: '+500 Étudiants Accompagnés',
+    titleAr: 'أكثر من 500 طالب رافقناهم',
+    descFr: '95% de nos étudiants intègrent leur premier choix. Nos anciens sont aujourd\'hui en ENSA, médecine, ENCG, ISCAE. Tu ne seras pas le premier — tu seras le prochain.',
+    descAr: '95% ديال الطلبة ديالنا دخلو الاختيار الأول ديالهم. اللي قراو عندنا دابا ف ENSA، الطب، ENCG، ISCAE. ماشي غادي تكون الأول — غادي تكون التالي.',
+    color: '#1565c0',
+    stat: '95%'
+  },
+  {
+    id: 2, emoji: '⏳', trigger: 'NE PERDS PAS',
+    titleFr: 'Une Année Perdue = 12 Mois de Retard',
+    titleAr: 'عام ضايع = 12 شهر تأخر',
+    descFr: 'Sans orientation, tu risques une filière qui ne te plaît pas, un abandon en première année, ou pire : aucune inscription. Le coût d\'une mauvaise décision dépasse tout investissement.',
+    descAr: 'بلا توجيه، يمكن تلقا راسك ف شي فيليار ما بغيتيهاش، تخلي ف العام الأول، ولا ما تسجلش أصلاً. ثمن القرار الخاطئ أكبر من أي استثمار.',
+    color: '#1e88e5',
+    stat: '⚠️'
+  },
+  {
+    id: 3, emoji: '🎯', trigger: 'FAIT POUR TOI',
+    titleFr: 'Un Plan Sur-Mesure, Pas du Copier-Coller',
+    titleAr: 'خطة مفصلة ليك، ماشي نسخ ولصق',
+    descFr: 'On analyse ton profil, tes notes, tes passions et tes ambitions. Résultat : un plan d\'orientation unique, réaliste et aligné avec QUI TU ES vraiment.',
+    descAr: 'كنحللو الملف ديالك، النقط، الشغف والطموح ديالك. النتيجة: خطة توجيه فريدة، واقعية ومتوافقة مع شكون نتا حقيقيا.',
+    color: '#42a5f5',
+    stat: '1:1'
+  },
+  {
+    id: 4, emoji: '👨‍🏫', trigger: 'EXPERTS',
+    titleFr: 'Des Spécialistes du Système Marocain',
+    titleAr: 'متخصصين ف النظام المغربي',
+    descFr: 'Notre équipe maîtrise chaque concours, chaque deadline, chaque filière. Pas de conseils génériques d\'internet — des experts qui vivent le terrain chaque jour.',
+    descAr: 'الفريق ديالنا عارف كل كونكور، كل ديدلاين، كل فيليار. ماشي نصائح عامة من الإنترنت — خبراء كيعيشو الميدان كل يوم.',
+    color: '#64b5f6',
+    stat: '🎓'
+  },
+  {
+    id: 5, emoji: '🛡️', trigger: 'ZÉRO STRESS',
+    titleFr: 'On Gère Tout Pour Que Tu Te Concentres',
+    titleAr: 'حنا كندبرو على كلشي باش نتا تركز',
+    descFr: 'Inscriptions, deadlines, plateformes, dossiers, concours — on prend TOUT en charge. Toi, tu te concentres sur tes études et ton examen national.',
+    descAr: 'تسجيلات، ديدلاينات، منصات، ملفات، كونكورات — حنا كنتكلفو بكلشي. نتا غير ركز على القراية والباك الوطني ديالك.',
+    color: '#0d47a1',
+    stat: '0'
+  },
+  {
+    id: 6, emoji: '🔥', trigger: 'MAINTENANT',
+    titleFr: 'Les Places Sont Limitées, Les Deadlines N\'attendent Pas',
+    titleAr: 'البلايص محدودين، والديدلاينات ما كتسنا حتا واحد',
+    descFr: 'Chaque année, des centaines d\'étudiants ratent leur inscription par manque d\'anticipation. Les concours ouvrent bientôt. Agis maintenant ou regrette plus tard.',
+    descAr: 'كل عام، بزاف ديال الطلبة كيفوتهم التسجيل حيت ما خططوش. الكونكورات غادي يبداو قريب. دير شي حاجة دابا ولا ندم من بعد.',
+    color: '#2196f3',
+    stat: '⏰'
+  }
+];
+
+const WhyUsCard = ({ reason, index, onClick }) => (
+  <div
+    className="why-card"
+    onClick={onClick}
+    style={{ '--why-color': reason.color, '--why-delay': `${0.15 + index * 0.07}s` }}
+  >
+    <div className="why-card__trigger">{reason.trigger}</div>
+    <div className="why-card__top">
+      <span className="why-card__emoji">{reason.emoji}</span>
+      <span className="why-card__stat">{reason.stat}</span>
+    </div>
+    <h4 className="why-card__title">{reason.titleFr}</h4>
+    <p className="why-card__desc">{reason.descFr}</p>
+  </div>
+);
+
+const WhyUsPopup = ({ reason, index, onClose }) => (
+  <div className="why-overlay" onClick={onClose}>
+    <div className="why-popup" onClick={e => e.stopPropagation()} style={{ '--why-color': reason.color }}>
+      <button className="why-popup__close" onClick={onClose}>✕</button>
+      <div className="why-popup__accent" />
+      <div className="why-popup__content">
+        <div className="why-popup__header">
+          <div className="why-popup__header-emoji">{reason.emoji}</div>
+          <div>
+            <div className="why-popup__trigger">{reason.trigger}</div>
+            <h3 className="why-popup__title">{reason.titleFr}</h3>
+          </div>
+        </div>
+        <div className="why-popup__sep" />
+        <div className="why-popup__section">
+          <div className="why-popup__lang-label">Français</div>
+          <p className="why-popup__text">{reason.descFr}</p>
+        </div>
+        <div className="why-popup__section why-popup__section--darija">
+          <div className="why-popup__lang-label why-popup__lang-label--darija">بالدارجة</div>
+          <h4 className="why-popup__title-ar">{reason.titleAr}</h4>
+          <p className="why-popup__text-ar">{reason.descAr}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const WhyUsSlide = () => {
+  const [selected, setSelected] = useState(null);
+  return (
+    <Slide backgroundColor="#7ab4f2" padding={0}>
+      <div className="why-slide">
+        <div className="why-bg why-bg-1" />
+        <div className="why-bg why-bg-2" />
+        <div className="why-bg why-bg-3" />
+
+        {/* Header */}
+        <div className="why-header">
+          <div className="why-header__badge">💎 POURQUOI NOUS ?</div>
+          <h2 className="why-header__title">
+            6 Raisons Pour Lesquelles <span>Ils Nous Font Confiance</span>
+          </h2>
+          <p className="why-header__subtitle-ar">علاش الطلبة كيختارو Come To Study ؟</p>
+        </div>
+
+        {/* Cards grid */}
+        <div className="why-cards-grid">
+          {whyUsReasons.map((r, i) => (
+            <WhyUsCard key={r.id} reason={r} index={i} onClick={() => setSelected(r)} />
+          ))}
+        </div>
+
+        {/* Contrast comparison bar */}
+        <div className="why-contrast">
+          <div className="why-contrast__side why-contrast__side--without">
+            <div className="why-contrast__label">❌ Sans orientation</div>
+            <div className="why-contrast__items">
+              <span>Filière au hasard</span>
+              <span>Deadlines ratées</span>
+              <span>Année perdue</span>
+            </div>
+          </div>
+          <div className="why-contrast__divider">
+            <span className="why-contrast__vs">VS</span>
+          </div>
+          <div className="why-contrast__side why-contrast__side--with">
+            <div className="why-contrast__label">✅ Avec Come To Study</div>
+            <div className="why-contrast__items">
+              <span>Parcours idéal</span>
+              <span>Zéro deadline ratée</span>
+              <span>Réussite assurée</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Popup */}
+        {selected && (
+          <WhyUsPopup
+            reason={selected}
+            index={whyUsReasons.indexOf(selected)}
+            onClose={() => setSelected(null)}
+          />
+        )}
+      </div>
+    </Slide>
+  );
+};
+
+// ─── SLIDE 8 (moved): Erreurs Courantes ─────────────────────
 
 const problems = [
   {
@@ -543,7 +707,7 @@ const problems = [
     description: 'Ne pas classer ses choix par ordre de priorité est une erreur fatale. Si vos vœux ne sont pas bien ordonnés, vous risquez d\'être affecté à une filière qui ne vous intéresse pas du tout.',
     titleDarija: 'نسيان ترتيب الاختيارات حسب الأولوية',
     descDarija: 'إلا ما رتبتيش الاختيارات ديالك مزيان حسب الأولوية، يمكن يطيحو ليك ف شي فيليار ما بغيتيهاش. خاصك تفكر مزيان قبل ما تفاليدي.',
-    color: '#e53935',
+    color: '#1565c0',
     emoji: '📋'
   },
   {
@@ -558,7 +722,7 @@ const problems = [
     description: 'Une simple faute dans le numéro de CIN, le nom, la date de naissance ou les notes peut entraîner le rejet de votre candidature. Vérifiez chaque champ deux fois avant de valider.',
     titleDarija: 'إدخال معلومات خاطئة',
     descDarija: 'غلطة صغيرة ف رقم البطاقة ولا السمية ولا تاريخ الازدياد ولا النقط تقدر تخليهم يرفضو ليك الملف ديالك. خاصك تشيكي كل حاجة مرتين قبل ما تسيفطها.',
-    color: '#f57c00',
+    color: '#1e88e5',
     emoji: '✏️'
   },
   {
@@ -574,7 +738,7 @@ const problems = [
     description: 'Télécharger des photos floues, mal cadrées ou des documents scannés en basse qualité peut bloquer votre dossier. Les plateformes exigent des fichiers nets et conformes au format demandé.',
     titleDarija: 'رفع صور غير واضحة',
     descDarija: 'إلا رفعتي تصاور ماشي واضحين ولا دوكيمون مسكاني بجودة خايبة، الملف ديالك يقدر يتبلوكا. المنصات كيطلبو فيشيات واضحين وحسب الفورما المطلوب.',
-    color: '#ffa000',
+    color: '#42a5f5',
     emoji: '📸'
   },
   {
@@ -589,7 +753,7 @@ const problems = [
     description: 'Chaque concours et chaque plateforme a une date limite stricte. Si vous déposez votre candidature en retard — ne serait-ce que d\'une minute — votre dossier ne sera tout simplement pas accepté.',
     titleDarija: 'تجاوز الآجال',
     descDarija: 'كل كونكور وكل منصة عندها ديدلاين محددة. إلا فاتك الوقت — حتى بدقيقة — الملف ديالك ما غاديش يتقبل أصلاً. خاصك تكون ديما على بال.',
-    color: '#7b1fa2',
+    color: '#0d47a1',
     emoji: '⏰'
   },
   {
@@ -604,7 +768,7 @@ const problems = [
     description: 'Beaucoup d\'élèves saisissent un e-mail avec une faute ou ne vérifient jamais leur boîte. Les convocations, résultats et confirmations arrivent par mail — si vous ne recevez rien, vous ratez tout.',
     titleDarija: 'عدم التأكد من البريد الإلكتروني',
     descDarija: 'بزاف ديال الطلبة كيكتبو الإيميل ديالهم غلط ولا عمرهم ما كيشوفو البوات ديالهم. الاستدعاءات والنتائج والتأكيدات كيجيو بالإيميل — إلا ما وصلك والو، غادي يفوتك كلشي.',
-    color: '#0097a7',
+    color: '#64b5f6',
     emoji: '📧'
   },
   {
@@ -619,7 +783,7 @@ const problems = [
     description: 'Certains concours et inscriptions exigent le paiement de frais. Oublier ou ne pas payer à temps annule automatiquement votre candidature, même si le dossier est complet.',
     titleDarija: 'عدم أداء رسوم المباراة',
     descDarija: 'شي كونكورات كيطلبو تخلص الرسوم ديال التسجيل. إلا نسيتي تخلص ولا ما خلصتيش ف الوقت، الكونديداتور ديالك كتتلغى أوتوماتيكمون حتى إلا كان الملف كامل.',
-    color: '#455a64',
+    color: '#2196f3',
     emoji: '💳'
   },
   {
@@ -636,7 +800,7 @@ const problems = [
     description: 'Après l\'inscription, vous devez impérativement surveiller votre espace candidat et votre boîte mail pour la convocation. Ne pas télécharger ou imprimer sa convocation = pas de concours.',
     titleDarija: 'عدم تتبع الاستدعاء',
     descDarija: 'من بعد التسجيل، خاصك تبقى تشيكي الإسباس ديالك والإيميل باش تشوف الاستدعاء. إلا ما تيليشارجتيهش ولا ما طبعتيهش = ما غاديش تدوز الكونكور.',
-    color: '#c62828',
+    color: '#1565c0',
     emoji: '📄'
   }
 ];
@@ -706,7 +870,7 @@ const ErreursSlide = () => {
   const [selectedProb, setSelectedProb] = useState(null);
 
   return (
-    <Slide backgroundColor="#fff8f6" padding={0}>
+    <Slide backgroundColor="#b4c4e6" padding={0}>
       <div className="prob-slide">
         {/* Background decorations */}
         <div className="prob-bg prob-bg-1" />
@@ -746,18 +910,19 @@ const ErreursSlide = () => {
 
 // ─── SLIDE 4: Plan / Sommaire ───────────────────────────────
 
-// PLAN ITEMS — Update these with your actual plan sections
+// PLAN ITEMS — Matching actual presentation content
 const planItems = [
-  { id: 1, number: '01', title: 'Titre de la section 1', subtitle: 'Brève description ici' },
-  { id: 2, number: '02', title: 'Titre de la section 2', subtitle: 'Brève description ici' },
-  { id: 3, number: '03', title: 'Titre de la section 3', subtitle: 'Brève description ici' },
-  { id: 4, number: '04', title: 'Titre de la section 4', subtitle: 'Brève description ici' },
-  { id: 5, number: '05', title: 'Titre de la section 5', subtitle: 'Brève description ici' },
-  { id: 6, number: '06', title: 'Titre de la section 6', subtitle: 'Brève description ici' }
+  { id: 1, number: '01', title: 'Nos Professeurs', subtitle: 'L\'équipe pédagogique qui vous accompagne' },
+  { id: 2, number: '02', title: 'La Confusion Post-Bac', subtitle: 'Les défis que rencontrent les bacheliers' },
+  { id: 3, number: '03', title: 'Diplômes & Parcours', subtitle: 'BTS, Licence, Master... tout comprendre' },
+  { id: 4, number: '04', title: 'Écoles par Secteur', subtitle: 'Guide complet des établissements' },
+  { id: 5, number: '05', title: 'Critères de Choix', subtitle: 'Comment choisir la bonne orientation' },
+  { id: 6, number: '06', title: 'Erreurs à Éviter', subtitle: 'Les pièges courants et comment les éviter' },
+  { id: 7, number: '07', title: 'Notre Solution', subtitle: 'Come To Study Tawjeeh à votre service' }
 ];
 
 const PlanSlide = () => (
-  <Slide backgroundColor="#f4f7fb" padding={0}>
+  <Slide backgroundColor="#c8dcf6" padding={0}>
     <div className="plan-slide">
       {/* Background decorations */}
       <div className="plan-bg plan-bg-1" />
@@ -969,7 +1134,7 @@ const DiplomesSlide = () => {
   const [selectedDiploma, setSelectedDiploma] = useState(null);
 
   return (
-    <Slide backgroundColor="#f8f9fc" padding={0}>
+    <Slide backgroundColor="#b4d0f8" padding={0}>
       <div className="dipl-slide">
         {/* BG */}
         <div className="dipl-bg dipl-bg-1" />
@@ -1298,7 +1463,7 @@ const EcolesSlide = () => {
   const [selectedSector, setSelectedSector] = useState(null);
 
   return (
-    <Slide backgroundColor="#f6f8fc" padding={0}>
+    <Slide backgroundColor="#bccef4" padding={0}>
       <div className="ecol-slide">
         <div className="ecol-bg ecol-bg-1" />
         <div className="ecol-bg ecol-bg-2" />
@@ -1360,7 +1525,7 @@ const EcolesSlide = () => {
 
 // ─── SLIDE 7: Critères de Choix ─────────────────────────────
 const CriteresSlide = () => (
-  <Slide backgroundColor="#f6f8fc" padding={0}>
+  <Slide backgroundColor="#c0d4f6" padding={0}>
     <div className="crit-slide">
       <div className="crit-bg crit-bg-1" />
       <div className="crit-bg crit-bg-2" />
@@ -1384,6 +1549,169 @@ const CriteresSlide = () => (
   </Slide>
 );
 
+// ─── SLIDE 11: Thank You / Merci + Contact ─────────────────
+
+const CONTACT_EMAIL = 'example@gmail.com';
+const PHONE_NUMBER = '+212 505050505';
+const MAPS_LINK = 'https://maps.google.com/?q=Khouribga+Maroc';
+
+const ThankYouSlide = () => {
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Nouveau contact de ${form.name}`);
+    const body = encodeURIComponent(
+      `Nom: ${form.name}\nEmail: ${form.email}\nTéléphone: ${form.phone}\n\nMessage:\n${form.message}`
+    );
+    window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, '_self');
+    setSent(true);
+    setTimeout(() => setSent(false), 4000);
+  };
+
+  return (
+    <Slide backgroundColor="#a8bce8" padding={0}>
+      <div className="ty-slide">
+        {/* Background */}
+        <div className="ty-orb ty-orb-1" />
+        <div className="ty-orb ty-orb-2" />
+        <div className="ty-orb ty-orb-3" />
+        <div className="ty-grid-overlay" />
+
+        {/* ── LEFT: Thank you + contact info ── */}
+        <div className="ty-left">
+          <div className="ty-logo-wrap">
+            <img src={companyLogo} alt="Come To Study" className="ty-logo" />
+          </div>
+
+          <h1 className="ty-title">Merci !</h1>
+          <p className="ty-title-ar">شكراً لكم</p>
+
+          <div className="ty-divider" />
+
+          <p className="ty-subtitle">Pour votre attention et votre confiance</p>
+          <p className="ty-subtitle-ar">على الاهتمام ديالكم والثقة ديالكم</p>
+
+          {/* Contact info cards */}
+          <div className="ty-info-cards">
+            <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="ty-info-card ty-info-card--phone">
+              <div className="ty-info-card__icon-wrap">📞</div>
+              <div className="ty-info-card__body">
+                <span className="ty-info-card__label">Appelez-nous</span>
+                <span className="ty-info-card__value">{PHONE_NUMBER}</span>
+              </div>
+              <span className="ty-info-card__arrow">→</span>
+            </a>
+
+            <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" className="ty-info-card ty-info-card--location">
+              <div className="ty-info-card__icon-wrap">📍</div>
+              <div className="ty-info-card__body">
+                <span className="ty-info-card__label">Localisation</span>
+                <span className="ty-info-card__value">Khouribga, Maroc</span>
+              </div>
+              <span className="ty-info-card__arrow">→</span>
+            </a>
+
+            <a href={`mailto:${CONTACT_EMAIL}`} className="ty-info-card ty-info-card--email">
+              <div className="ty-info-card__icon-wrap">✉️</div>
+              <div className="ty-info-card__body">
+                <span className="ty-info-card__label">Email</span>
+                <span className="ty-info-card__value">{CONTACT_EMAIL}</span>
+              </div>
+              <span className="ty-info-card__arrow">→</span>
+            </a>
+          </div>
+
+          <div className="ty-cta">
+            <span className="ty-cta__text">Votre avenir commence ici</span>
+            <span className="ty-cta__text-ar">المستقبل ديالك كيبدا هنا</span>
+          </div>
+        </div>
+
+        {/* ── RIGHT: Contact form ── */}
+        <div className="ty-right">
+          <div className="ty-form-card">
+            <div className="ty-form-card__header">
+              <h3 className="ty-form-card__title">Contactez-Nous</h3>
+              <p className="ty-form-card__title-ar">تواصلو معانا</p>
+            </div>
+
+            <form className="ty-form" onSubmit={handleSubmit}>
+              <div className="ty-form__group">
+                <label className="ty-form__label">Nom complet</label>
+                <input
+                  className="ty-form__input"
+                  type="text"
+                  name="name"
+                  placeholder="Votre nom..."
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="ty-form__row">
+                <div className="ty-form__group">
+                  <label className="ty-form__label">Email</label>
+                  <input
+                    className="ty-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="votre@email.com"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="ty-form__group">
+                  <label className="ty-form__label">Téléphone</label>
+                  <input
+                    className="ty-form__input"
+                    type="tel"
+                    name="phone"
+                    placeholder="+212 ..."
+                    value={form.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="ty-form__group">
+                <label className="ty-form__label">Message</label>
+                <textarea
+                  className="ty-form__textarea"
+                  name="message"
+                  placeholder="Votre message..."
+                  rows="3"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <button type="submit" className={`ty-form__btn ${sent ? 'ty-form__btn--sent' : ''}`}>
+                {sent ? (
+                  <><span className="ty-form__btn-check">✓</span> Envoyé !</>
+                ) : (
+                  <><span className="ty-form__btn-icon">✈</span> Envoyer le message</>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Floating shapes */}
+        <div className="ty-float ty-float-1" />
+        <div className="ty-float ty-float-2" />
+        <div className="ty-float ty-float-3" />
+      </div>
+    </Slide>
+  );
+};
+
 // ─── MAIN PRESENTATION ──────────────────────────────────────
 const Presentation = () => (
   <Deck
@@ -1402,6 +1730,8 @@ const Presentation = () => (
     <CriteresSlide />
     <ErreursSlide />
     <SolutionSlide />
+    <WhyUsSlide />
+    <ThankYouSlide />
   </Deck>
 );
 
