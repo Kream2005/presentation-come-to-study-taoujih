@@ -81,11 +81,7 @@ const CustomTemplate = ({ slideNumber, numberOfSlides }) => (
 );
 
 // ─── SLIDE 1: Title / Welcome ───────────────────────────────
-const TitleSlide = () => (
-  <Slide
-    backgroundColor="#0a1628"
-    padding={0}
-  >
+const TitleSlideContent = () => (
     <div className="title-slide-wrapper">
       {/* ── LEFT BLUE PANEL ── */}
       <div className="title-left-panel">
@@ -160,7 +156,6 @@ const TitleSlide = () => (
         </div>
       </div>
     </div>
-  </Slide>
 );
 
 // ─── SLIDE 2: Professors ────────────────────────────────────
@@ -260,11 +255,10 @@ const ProfessorPopup = ({ prof, onClose }) => (
   </div>
 );
 
-const ProfessorsSlide = () => {
+const ProfessorsSlideContent = () => {
   const [selectedProf, setSelectedProf] = useState(null);
 
   return (
-    <Slide backgroundColor="#b8d4f8" padding={0}>
       <div className="prof-slide">
         {/* Background decorations */}
         <div className="prof-bg-shape prof-bg-shape-1" />
@@ -298,7 +292,6 @@ const ProfessorsSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
@@ -406,11 +399,10 @@ const ConfusionPopup = ({ point, index, onClose }) => (
   </div>
 );
 
-const ConfusionSlide = () => {
+const ConfusionSlideContent = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <Slide backgroundColor="#b0c8ee" padding={0}>
       <div className="conf-slide">
         <div className="conf-bg conf-bg-1" />
         <div className="conf-bg conf-bg-2" />
@@ -460,7 +452,6 @@ const ConfusionSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
@@ -475,8 +466,7 @@ const ctsServices = [
   { id: 6, emoji: '📊', titleFr: 'Suivi Académique', titleAr: 'متابعة أكاديمية مستمرة', descFr: 'Bilans réguliers, ajustements et une équipe toujours disponible.', color: '#2196f3' }
 ];
 
-const SolutionSlide = () => (
-  <Slide backgroundColor="#0a1628" padding={0}>
+const SolutionSlideContent = () => (
     <div className="cts-slide">
       {/* Animated background elements */}
       <div className="cts-orb cts-orb-1" />
@@ -525,7 +515,6 @@ const SolutionSlide = () => (
         </div>
       </div>
     </div>
-  </Slide>
 );
 
 // ─── SLIDE 10: Pourquoi Nous ? (Why Us — Psychological Persuasion) ──
@@ -631,10 +620,9 @@ const WhyUsPopup = ({ reason, index, onClose }) => (
   </div>
 );
 
-const WhyUsSlide = () => {
+const WhyUsSlideContent = () => {
   const [selected, setSelected] = useState(null);
   return (
-    <Slide backgroundColor="#7ab4f2" padding={0}>
       <div className="why-slide">
         <div className="why-bg why-bg-1" />
         <div className="why-bg why-bg-2" />
@@ -688,7 +676,6 @@ const WhyUsSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
@@ -866,11 +853,10 @@ const ProblemPopup = ({ problem, index, onClose }) => (
   </div>
 );
 
-const ErreursSlide = () => {
+const ErreursSlideContent = () => {
   const [selectedProb, setSelectedProb] = useState(null);
 
   return (
-    <Slide backgroundColor="#b4c4e6" padding={0}>
       <div className="prob-slide">
         {/* Background decorations */}
         <div className="prob-bg prob-bg-1" />
@@ -904,7 +890,6 @@ const ErreursSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
@@ -921,8 +906,7 @@ const planItems = [
   { id: 7, number: '07', title: 'Notre Solution', subtitle: 'Come To Study Tawjeeh à votre service' }
 ];
 
-const PlanSlide = () => (
-  <Slide backgroundColor="#c8dcf6" padding={0}>
+const PlanSlideContent = () => (
     <div className="plan-slide">
       {/* Background decorations */}
       <div className="plan-bg plan-bg-1" />
@@ -955,7 +939,6 @@ const PlanSlide = () => (
         ))}
       </div>
     </div>
-  </Slide>
 );
 
 // ─── SLIDE 5: Diplômes & Parcours ───────────────────────────
@@ -1130,11 +1113,10 @@ const DiplomaPopup = ({ diploma, onClose }) => (
   </div>
 );
 
-const DiplomesSlide = () => {
+const DiplomesSlideContent = () => {
   const [selectedDiploma, setSelectedDiploma] = useState(null);
 
   return (
-    <Slide backgroundColor="#b4d0f8" padding={0}>
       <div className="dipl-slide">
         {/* BG */}
         <div className="dipl-bg dipl-bg-1" />
@@ -1204,7 +1186,6 @@ const DiplomesSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
@@ -1459,11 +1440,10 @@ const SectorPopup = ({ sector, onClose }) => {
   );
 };
 
-const EcolesSlide = () => {
+const EcolesSlideContent = () => {
   const [selectedSector, setSelectedSector] = useState(null);
 
   return (
-    <Slide backgroundColor="#bccef4" padding={0}>
       <div className="ecol-slide">
         <div className="ecol-bg ecol-bg-1" />
         <div className="ecol-bg ecol-bg-2" />
@@ -1519,13 +1499,11 @@ const EcolesSlide = () => {
           />
         )}
       </div>
-    </Slide>
   );
 };
 
 // ─── SLIDE 7: Critères de Choix ─────────────────────────────
-const CriteresSlide = () => (
-  <Slide backgroundColor="#c0d4f6" padding={0}>
+const CriteresSlideContent = () => (
     <div className="crit-slide">
       <div className="crit-bg crit-bg-1" />
       <div className="crit-bg crit-bg-2" />
@@ -1546,7 +1524,6 @@ const CriteresSlide = () => (
         <p className="crit-placeholder__hint">Critères basés sur vos préférences, compétences et objectifs</p>
       </div>
     </div>
-  </Slide>
 );
 
 // ─── SLIDE 11: Thank You / Merci + Contact ─────────────────
@@ -1555,7 +1532,7 @@ const CONTACT_EMAIL = 'example@gmail.com';
 const PHONE_NUMBER = '+212 505050505';
 const MAPS_LINK = 'https://maps.google.com/?q=Khouribga+Maroc';
 
-const ThankYouSlide = () => {
+const ThankYouSlideContent = () => {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
 
@@ -1573,7 +1550,6 @@ const ThankYouSlide = () => {
   };
 
   return (
-    <Slide backgroundColor="#a8bce8" padding={0}>
       <div className="ty-slide">
         {/* Background */}
         <div className="ty-orb ty-orb-1" />
@@ -1708,7 +1684,6 @@ const ThankYouSlide = () => {
         <div className="ty-float ty-float-2" />
         <div className="ty-float ty-float-3" />
       </div>
-    </Slide>
   );
 };
 
@@ -1721,19 +1696,48 @@ const Presentation = () => (
     )}
     overviewMode={false}
   >
-    <TitleSlide />
-    <ProfessorsSlide />
-    <ConfusionSlide />
-    <PlanSlide />
-    <DiplomesSlide />
-    <EcolesSlide />
-    <CriteresSlide />
-    <ErreursSlide />
-    <SolutionSlide />
-    <WhyUsSlide />
-    <ThankYouSlide />
+    <Slide backgroundColor="#0a1628" padding={0}><TitleSlideContent /></Slide>
+    <Slide backgroundColor="#b8d4f8" padding={0}><ProfessorsSlideContent /></Slide>
+    <Slide backgroundColor="#b0c8ee" padding={0}><ConfusionSlideContent /></Slide>
+    <Slide backgroundColor="#c8dcf6" padding={0}><PlanSlideContent /></Slide>
+    <Slide backgroundColor="#b4d0f8" padding={0}><DiplomesSlideContent /></Slide>
+    <Slide backgroundColor="#bccef4" padding={0}><EcolesSlideContent /></Slide>
+    <Slide backgroundColor="#c0d4f6" padding={0}><CriteresSlideContent /></Slide>
+    <Slide backgroundColor="#b4c4e6" padding={0}><ErreursSlideContent /></Slide>
+    <Slide backgroundColor="#0a1628" padding={0}><SolutionSlideContent /></Slide>
+    <Slide backgroundColor="#7ab4f2" padding={0}><WhyUsSlideContent /></Slide>
+    <Slide backgroundColor="#a8bce8" padding={0}><ThankYouSlideContent /></Slide>
   </Deck>
 );
 
+// Error boundary for debugging
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, info) {
+    console.error('React Error Boundary caught:', error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: 40, color: 'red', background: '#fff', fontFamily: 'monospace' }}>
+          <h2>Something went wrong:</h2>
+          <pre>{this.state.error && this.state.error.toString()}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const root = createRoot(document.getElementById('root'));
-root.render(<Presentation />);
+root.render(
+  <ErrorBoundary>
+    <Presentation />
+  </ErrorBoundary>
+);

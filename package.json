@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack serve --port=3000 --hot --config ./webpack.config.js",
+    "start": "webpack serve --port=3005 --hot --config ./webpack.config.js",
     "build": "webpack --mode production --config ./webpack.config.js",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "spectacle": "^6.2.0"
+    "spectacle": "^10.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
