@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug Test</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      #error-display {
+        position: fixed; top: 0; left: 0; right: 0;
+        background: #ff0000; color: white; padding: 20px;
+        font-family: monospace; font-size: 14px; z-index: 999999;
+        white-space: pre-wrap; display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="error-display"></div>
+    <div id="root"></div>
+    <script>
+      // Capture ALL errors and show them on the page
+      window.onerror = function(msg, url, line, col, error) {
+        var el = document.getElementById('error-display');
+        el.style.display = 'block';
+        el.textContent += 'ERROR: ' + msg + '\nAt: ' + url + ':' + line + ':' + col + '\n';
+        if (error && error.stack) el.textContent += error.stack + '\n\n';
+        return false;
+      };
+      window.addEventListener('unhandledrejection', function(e) {
+        var el = document.getElementById('error-display');
+        el.style.display = 'block';
+        el.textContent += 'UNHANDLED PROMISE: ' + e.reason + '\n';
+        if (e.reason && e.reason.stack) el.textContent += e.reason.stack + '\n\n';
+      });
+    </script>
+    <script src="presentation.js"></script>
+    <script>
+      // If root is still empty after 3 seconds, report it
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && root.innerHTML.trim() === '') {
+          var el = document.getElementById('error-display');
+          el.style.display = 'block';
+          el.textContent += 'WARNING: #root is still empty after 3 seconds. React may have failed to render silently.\n';
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>
