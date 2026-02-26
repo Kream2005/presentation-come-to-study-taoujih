@@ -11,12 +11,16 @@ import './styles.css';
 // =============================================================
 
 import companyLogo from './images/Come To Study Logo-2.png';
+import ayoubPostImg from './images/ayoub post.png';
+import benchariImg from './images/benchari.jpeg';
+import fouhamImg from './images/fouham.png';
+import hsaltiImg from './images/hsalti.jpeg';
 
 // ADDRESS: Replace with the real address
-const COMPANY_ADDRESS = 'Notre adresse';
+const COMPANY_ADDRESS = 'Notre adresse';   
 
 // GOOGLE MAPS LINK: Replace with your Google Maps link
-const GOOGLE_MAPS_LINK = 'https://maps.google.com/?q=YOUR+ADDRESS+HERE';
+const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/L118TbWuqB9j686u6?g_st=iw';
 
 // =============================================================
 // PROFESSORS — Update with real info and images
@@ -28,29 +32,29 @@ const GOOGLE_MAPS_LINK = 'https://maps.google.com/?q=YOUR+ADDRESS+HERE';
 const professors = [
   {
     id: 1,
-    photo: null, // Replace with imported image
-    name: 'Nom du Professeur 1',
-    career: 'Spécialité / Matière',
+    photo: benchariImg,
+    name: 'Ayoub BENCHARI',
+    career: 'Expert en Orientation POST-BAC',
     details:
-      'Ajoutez ici une description détaillée du professeur : son parcours académique, ses années d\'expérience, ses spécialisations, ses réalisations et tout ce qui le distingue.',
+      'Expert en orientation post-bac, spécialisé dans l\'accompagnement des bacheliers marocains vers les meilleures filières et écoles. Il guide les étudiants dans leurs choix d\'avenir avec une approche personnalisée.\n\nخبير ف التوجيه بعد الباك، متخصص ف مرافقة الباشلوريين المغاربة باش يختارو أحسن الفيليارات والمدارس. كيوجه الطلبة ف الاختيارات ديالهم بطريقة شخصية.',
     accentColor: '#1565c0'
   },
   {
     id: 2,
-    photo: null,
-    name: 'Nom du Professeur 2',
-    career: 'Spécialité / Matière',
+    photo: fouhamImg,
+    name: 'Prof. Karim FOUHAM',
+    career: 'Professeur d\'Enseignement Supérieur',
     details:
-      'Ajoutez ici une description détaillée du professeur : son parcours académique, ses années d\'expérience, ses spécialisations, ses réalisations et tout ce qui le distingue.',
+      'Professeur d\'enseignement supérieur avec une expérience approfondie dans le milieu académique marocain. Il apporte son expertise et sa connaissance du système universitaire pour orienter les étudiants.\n\nأستاذ ديال التعليم العالي عندو تجربة كبيرة ف الميدان الأكاديمي المغربي. كيستاعمل الخبرة ديالو ومعرفتو بالنظام الجامعي باش يوجه الطلبة.',
     accentColor: '#1e88e5'
   },
   {
     id: 3,
-    photo: null,
-    name: 'Nom du Professeur 3',
-    career: 'Spécialité / Matière',
+    photo: hsaltiImg,
+    name: 'Mohamed HSALTI',
+    career: 'Professeur de Mathématiques',
     details:
-      'Ajoutez ici une description détaillée du professeur : son parcours académique, ses années d\'expérience, ses spécialisations, ses réalisations et tout ce qui le distingue.',
+      'Professeur de mathématiques passionné et expérimenté, il accompagne les élèves dans la maîtrise des maths avec des méthodes pédagogiques adaptées. Préparation aux concours et renforcement académique.\n\nأستاذ ديال الرياضيات عندو التجربة والشغف، كيرافق التلاميذ باش يتقنو الرياضيات بطرق بيداغوجية مناسبة. تحضير للمباريات وتقوية أكاديمية.',
     accentColor: '#42a5f5'
   }
 ];
@@ -268,8 +272,8 @@ const ProfessorsSlideContent = () => {
         {/* Title */}
         <div className="prof-slide__header">
           <div className="prof-slide__title-accent" />
-          <h2 className="prof-slide__title">Nos Professeurs</h2>
-          <p className="prof-slide__subtitle-ar">الأساتذة ديالنا</p>
+          <h2 className="prof-slide__title">Notre équipe CTS-Tawjeeh</h2>
+          <p className="prof-slide__subtitle-ar">الفريق ديالنا فـ CTS-Tawjeeh</p>
         </div>
 
         {/* Cards grid */}
@@ -294,6 +298,59 @@ const ProfessorsSlideContent = () => {
       </div>
   );
 };
+
+// ─── SLIDE 2b: Team Image (ayoub post.png) ──────────────────
+const TeamImageSlideContent = () => (
+  <div className="prof-slide">
+    <div className="prof-bg-shape prof-bg-shape-1" />
+    <div className="prof-bg-shape prof-bg-shape-2" />
+    <div className="prof-bg-shape prof-bg-shape-3" />
+
+    {/* Title */}
+    <div className="prof-slide__header">
+      <div className="prof-slide__title-accent" />
+      <h2 className="prof-slide__title">Notre équipe CTS-Tawjeeh</h2>
+      <p className="prof-slide__subtitle-ar">الفريق ديالنا فـ CTS-Tawjeeh</p>
+    </div>
+
+    {/* Stylish image display */}
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+      padding: '0',
+      overflow: 'hidden',
+      minHeight: 0
+    }}>
+      <div style={{
+        position: 'relative',
+        borderRadius: '18px',
+        overflow: 'hidden',
+        boxShadow: '0 20px 60px rgba(21, 101, 192, 0.25), 0 8px 24px rgba(0,0,0,0.12)',
+        height: '100%',
+        border: '3px solid rgba(21, 101, 192, 0.15)',
+        background: 'linear-gradient(135deg, rgba(21, 101, 192, 0.06), rgba(66, 165, 245, 0.06))',
+        padding: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <img
+          src={ayoubPostImg}
+          alt="Équipe CTS-Tawjeeh"
+          style={{
+            display: 'block',
+            height: '100%',
+            width: 'auto',
+            objectFit: 'contain',
+            borderRadius: '14px'
+          }}
+        />
+      </div>
+    </div>
+  </div>
+);
 
 // ─── SLIDE 3: Problématique – La Confusion Post-Bac ────────
 
@@ -361,8 +418,8 @@ const ConfusionCard = ({ point, index, onClick }) => (
       <span className="conf-card__emoji">{point.emoji}</span>
       <span className="conf-card__num">{String(index + 1).padStart(2, '0')}</span>
     </div>
-    <h4 className="conf-card__title">{point.titleFr}</h4>
-    <p className="conf-card__desc">{point.descFr}</p>
+    <h4 className="conf-card__title">{point.titleAr}</h4>
+    <p className="conf-card__desc">{point.descAr}</p>
   </div>
 );
 
@@ -377,22 +434,22 @@ const ConfusionPopup = ({ point, index, onClose }) => (
           <div className="conf-popup__header-emoji">{point.emoji}</div>
           <div>
             <div className="conf-popup__num">{String(index + 1).padStart(2, '0')}</div>
-            <h3 className="conf-popup__title">{point.titleFr}</h3>
+            <h3 className="conf-popup__title">{point.titleAr}</h3>
           </div>
         </div>
         <div className="conf-popup__sep" />
 
-        {/* French */}
-        <div className="conf-popup__section">
-          <div className="conf-popup__lang-label">Français</div>
-          <p className="conf-popup__text">{point.descFr}</p>
-        </div>
-
         {/* Darija */}
         <div className="conf-popup__section conf-popup__section--darija">
           <div className="conf-popup__lang-label conf-popup__lang-label--darija">بالدارجة</div>
-          <h4 className="conf-popup__title-ar">{point.titleAr}</h4>
           <p className="conf-popup__text-ar">{point.descAr}</p>
+        </div>
+
+        {/* French */}
+        <div className="conf-popup__section">
+          <div className="conf-popup__lang-label">Français</div>
+          <h4 className="conf-popup__title-ar">{point.titleFr}</h4>
+          <p className="conf-popup__text">{point.descFr}</p>
         </div>
       </div>
     </div>
@@ -412,10 +469,10 @@ const ConfusionSlideContent = () => {
         <div className="conf-header">
           <div className="conf-header__badge">⚠️ PROBLÉMATIQUE</div>
           <h2 className="conf-header__title">
-            Perdus dans le Système : <span>Le Vrai Défi</span><br />
-            des Bacheliers Marocains
+            تايهين ف النظام: <span>التحدي الحقيقي</span><br />
+            ديال الباشلوريين المغاربة
           </h2>
-          <p className="conf-header__subtitle-ar">تايهين ف النظام: التحدي الحقيقي ديال الباشلوريين المغاربة</p>
+          <p className="conf-header__subtitle-ar">Perdus dans le Système : Le Vrai Défi des Bacheliers Marocains</p>
         </div>
 
         {/* Stat bar */}
@@ -587,8 +644,8 @@ const WhyUsCard = ({ reason, index, onClick }) => (
       <span className="why-card__emoji">{reason.emoji}</span>
       <span className="why-card__stat">{reason.stat}</span>
     </div>
-    <h4 className="why-card__title">{reason.titleFr}</h4>
-    <p className="why-card__desc">{reason.descFr}</p>
+    <h4 className="why-card__title">{reason.titleAr}</h4>
+    <p className="why-card__desc">{reason.descAr}</p>
   </div>
 );
 
@@ -602,18 +659,18 @@ const WhyUsPopup = ({ reason, index, onClose }) => (
           <div className="why-popup__header-emoji">{reason.emoji}</div>
           <div>
             <div className="why-popup__trigger">{reason.trigger}</div>
-            <h3 className="why-popup__title">{reason.titleFr}</h3>
+            <h3 className="why-popup__title">{reason.titleAr}</h3>
           </div>
         </div>
         <div className="why-popup__sep" />
-        <div className="why-popup__section">
-          <div className="why-popup__lang-label">Français</div>
-          <p className="why-popup__text">{reason.descFr}</p>
-        </div>
         <div className="why-popup__section why-popup__section--darija">
           <div className="why-popup__lang-label why-popup__lang-label--darija">بالدارجة</div>
-          <h4 className="why-popup__title-ar">{reason.titleAr}</h4>
           <p className="why-popup__text-ar">{reason.descAr}</p>
+        </div>
+        <div className="why-popup__section">
+          <div className="why-popup__lang-label">Français</div>
+          <h4 className="why-popup__title-ar">{reason.titleFr}</h4>
+          <p className="why-popup__text">{reason.descFr}</p>
         </div>
       </div>
     </div>
@@ -632,9 +689,9 @@ const WhyUsSlideContent = () => {
         <div className="why-header">
           <div className="why-header__badge">💎 POURQUOI NOUS ?</div>
           <h2 className="why-header__title">
-            6 Raisons Pour Lesquelles <span>Ils Nous Font Confiance</span>
+            علاش الطلبة <span>كيختارو Come To Study ؟</span>
           </h2>
-          <p className="why-header__subtitle-ar">علاش الطلبة كيختارو Come To Study ؟</p>
+          <p className="why-header__subtitle-ar">6 Raisons Pour Lesquelles Ils Nous Font Confiance</p>
         </div>
 
         {/* Cards grid */}
@@ -805,8 +862,8 @@ const ProblemCard = ({ problem, index, onClick }) => (
       <div className="prob-card__emoji">{problem.emoji}</div>
       <div className="prob-card__icon">{problem.icon}</div>
     </div>
-    <h4 className="prob-card__title">{problem.title}</h4>
-    <p className="prob-card__desc">{problem.description}</p>
+    <h4 className="prob-card__title">{problem.titleDarija}</h4>
+    <p className="prob-card__desc">{problem.descDarija}</p>
     <div className="prob-card__number">{String(index + 1).padStart(2, '0')}</div>
   </div>
 );
@@ -829,24 +886,24 @@ const ProblemPopup = ({ problem, index, onClose }) => (
           </div>
           <div className="prob-popup__header-text">
             <div className="prob-popup__number">{String(index + 1).padStart(2, '0')}</div>
-            <h3 className="prob-popup__title-fr">{problem.title}</h3>
+            <h3 className="prob-popup__title-fr">{problem.titleDarija}</h3>
           </div>
         </div>
 
         {/* Separator */}
         <div className="prob-popup__sep" />
 
-        {/* French text */}
-        <div className="prob-popup__section">
-          <div className="prob-popup__lang-label">Français</div>
-          <p className="prob-popup__text-fr">{problem.description}</p>
-        </div>
-
         {/* Darija text */}
         <div className="prob-popup__section prob-popup__section--darija">
           <div className="prob-popup__lang-label prob-popup__lang-label--darija">بالدارجة</div>
-          <h4 className="prob-popup__title-darija">{problem.titleDarija}</h4>
           <p className="prob-popup__text-darija">{problem.descDarija}</p>
+        </div>
+
+        {/* French text */}
+        <div className="prob-popup__section">
+          <div className="prob-popup__lang-label">Français</div>
+          <h4 className="prob-popup__title-darija">{problem.title}</h4>
+          <p className="prob-popup__text-fr">{problem.description}</p>
         </div>
       </div>
     </div>
@@ -868,10 +925,10 @@ const ErreursSlideContent = () => {
         <div className="prob-header">
           <div className="prob-header__badge">🚨 ATTENTION</div>
           <h2 className="prob-header__title">
-            Erreurs Qui Peuvent Vous <span>Coûter</span><br />
-            Une Année Entière
+            أخطاء قد <span>تكلفك</span><br />
+            سنة كاملة
           </h2>
-          <p className="prob-header__subtitle">أخطاء قد تكلفك سنة كاملة</p>
+          <p className="prob-header__subtitle">Erreurs Qui Peuvent Vous Coûter Une Année Entière</p>
         </div>
 
         {/* Problem cards grid — 3x2 */}
@@ -897,13 +954,12 @@ const ErreursSlideContent = () => {
 
 // PLAN ITEMS — Matching actual presentation content
 const planItems = [
-  { id: 1, number: '01', title: 'Nos Professeurs', subtitle: 'L\'équipe pédagogique qui vous accompagne' },
-  { id: 2, number: '02', title: 'La Confusion Post-Bac', subtitle: 'Les défis que rencontrent les bacheliers' },
-  { id: 3, number: '03', title: 'Diplômes & Parcours', subtitle: 'BTS, Licence, Master... tout comprendre' },
-  { id: 4, number: '04', title: 'Écoles par Secteur', subtitle: 'Guide complet des établissements' },
-  { id: 5, number: '05', title: 'Critères de Choix', subtitle: 'Comment choisir la bonne orientation' },
-  { id: 6, number: '06', title: 'Erreurs à Éviter', subtitle: 'Les pièges courants et comment les éviter' },
-  { id: 7, number: '07', title: 'Notre Solution', subtitle: 'Come To Study Tawjeeh à votre service' }
+  { id: 1, number: '01', title: 'Notre Équipe', subtitle: 'Le team CTS-Tawjeeh qui vous accompagne', subtitleAr: 'الفريق ديال CTS-Tawjeeh اللي غادي يرافقك' },
+  { id: 2, number: '02', title: 'La Confusion Post-Bac', subtitle: 'Les défis que rencontrent les bacheliers', subtitleAr: 'التحديات اللي كيواجهو الباشلوريين' },
+  { id: 3, number: '03', title: 'Diplômes & Parcours', subtitle: 'BTS, Licence, Master... tout comprendre', subtitleAr: 'BTS، ليسونس، ماستر... فهم كلشي' },
+  { id: 4, number: '04', title: 'Écoles par Secteur', subtitle: 'Guide complet des établissements', subtitleAr: 'دليل شامل ديال المؤسسات' },
+  { id: 5, number: '05', title: 'Erreurs à Éviter', subtitle: 'Les pièges courants et comment les éviter', subtitleAr: 'الأخطاء الشائعة وكيفاش تتجنبها' },
+  { id: 6, number: '06', title: 'Notre Solution', subtitle: 'Come To Study Tawjeeh à votre service', subtitleAr: 'Come To Study Tawjeeh ف خدمتك' }
 ];
 
 const PlanSlideContent = () => (
@@ -934,6 +990,7 @@ const PlanSlideContent = () => (
             <div className="plan-item__content">
               <h3 className="plan-item__title">{item.title}</h3>
               <p className="plan-item__subtitle">{item.subtitle}</p>
+              {item.subtitleAr && <p className="plan-item__subtitle-ar">{item.subtitleAr}</p>}
             </div>
           </div>
         ))}
@@ -1528,23 +1585,26 @@ const CriteresSlideContent = () => (
 
 // ─── SLIDE 11: Thank You / Merci + Contact ─────────────────
 
-const CONTACT_EMAIL = 'example@gmail.com';
-const PHONE_NUMBER = '+212 505050505';
-const MAPS_LINK = 'https://maps.google.com/?q=Khouribga+Maroc';
+const CONTACT_EMAIL = 'cometostudy1@gmail.com';
+const PHONE_NUMBER = '+212 709058198';
+const WHATSAPP_NUMBERS = ['212709058198', '212695563599'];
+const MAPS_LINK = 'https://maps.app.goo.gl/L118TbWuqB9j686u6?g_st=iw';
 
 const ThankYouSlideContent = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Nouveau contact de ${form.name}`);
-    const body = encodeURIComponent(
-      `Nom: ${form.name}\nEmail: ${form.email}\nTéléphone: ${form.phone}\n\nMessage:\n${form.message}`
-    );
-    window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, '_self');
+    const text = `✉️ Nouveau message depuis la présentation CTS-Tawjeeh\n\n👤 Nom: ${form.name}\n📞 Tél: ${form.phone}\n\n💬 Message:\n${form.message}`;
+    const encoded = encodeURIComponent(text);
+    // Open WhatsApp for both numbers
+    window.open(`https://wa.me/${WHATSAPP_NUMBERS[0]}?text=${encoded}`, '_blank');
+    setTimeout(() => {
+      window.open(`https://wa.me/${WHATSAPP_NUMBERS[1]}?text=${encoded}`, '_blank');
+    }, 500);
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
@@ -1629,30 +1689,16 @@ const ThankYouSlideContent = () => {
                 />
               </div>
 
-              <div className="ty-form__row">
-                <div className="ty-form__group">
-                  <label className="ty-form__label">Email</label>
-                  <input
-                    className="ty-form__input"
-                    type="email"
-                    name="email"
-                    placeholder="votre@email.com"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="ty-form__group">
-                  <label className="ty-form__label">Téléphone</label>
-                  <input
-                    className="ty-form__input"
-                    type="tel"
-                    name="phone"
-                    placeholder="+212 ..."
-                    value={form.phone}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="ty-form__group">
+                <label className="ty-form__label">Téléphone</label>
+                <input
+                  className="ty-form__input"
+                  type="tel"
+                  name="phone"
+                  placeholder="+212 ..."
+                  value={form.phone}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="ty-form__group">
@@ -1672,7 +1718,7 @@ const ThankYouSlideContent = () => {
                 {sent ? (
                   <><span className="ty-form__btn-check">✓</span> Envoyé !</>
                 ) : (
-                  <><span className="ty-form__btn-icon">✈</span> Envoyer le message</>
+                  <><span className="ty-form__btn-icon">📩</span> Envoyer via WhatsApp</>
                 )}
               </button>
             </form>
@@ -1697,12 +1743,11 @@ const Presentation = () => (
     overviewMode={false}
   >
     <Slide backgroundColor="#0a1628" padding={0}><TitleSlideContent /></Slide>
-    <Slide backgroundColor="#b8d4f8" padding={0}><ProfessorsSlideContent /></Slide>
+    <Slide backgroundColor="#b0cef2" padding={0}><ProfessorsSlideContent /></Slide>
     <Slide backgroundColor="#b0c8ee" padding={0}><ConfusionSlideContent /></Slide>
     <Slide backgroundColor="#c8dcf6" padding={0}><PlanSlideContent /></Slide>
     <Slide backgroundColor="#b4d0f8" padding={0}><DiplomesSlideContent /></Slide>
     <Slide backgroundColor="#bccef4" padding={0}><EcolesSlideContent /></Slide>
-    <Slide backgroundColor="#c0d4f6" padding={0}><CriteresSlideContent /></Slide>
     <Slide backgroundColor="#b4c4e6" padding={0}><ErreursSlideContent /></Slide>
     <Slide backgroundColor="#0a1628" padding={0}><SolutionSlideContent /></Slide>
     <Slide backgroundColor="#7ab4f2" padding={0}><WhyUsSlideContent /></Slide>

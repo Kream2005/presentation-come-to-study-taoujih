@@ -463,9 +463,10 @@ body {
 .prof-slide__subtitle-ar {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 12px;
-  color: #64b5f6;
+  color: #0d3b82;
   direction: rtl;
   margin: 2px 0 0;
+  opacity: 0.8;
 }
 
 /* Cards container */
@@ -537,6 +538,7 @@ body {
   width: 100px; height: 100px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 20%;
   border: 3px solid #fff;
   box-shadow: 0 4px 20px rgba(30,136,229,0.1);
 }
@@ -693,6 +695,7 @@ body {
   width: 140px; height: 140px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 20%;
   border: 4px solid #fff;
   box-shadow: 0 8px 28px rgba(30,136,229,0.1);
 }
@@ -880,10 +883,10 @@ body {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #42a5f5;
+  color: #0d3b82;
   margin: 4px 0 0;
   direction: rtl;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* Stat bar */
@@ -1618,10 +1621,10 @@ body {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #42a5f5;
+  color: #0d3b82;
   margin: 4px 0 0;
   direction: rtl;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* Cards grid */
@@ -2062,10 +2065,10 @@ body {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: #42a5f5;
+  color: #0d3b82;
   margin: 6px 0 0;
   direction: rtl;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* Problem cards */
@@ -2392,9 +2395,10 @@ body {
 .plan-header__subtitle-ar {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 12px;
-  color: #64b5f6;
+  color: #0d3b82;
   direction: rtl;
   margin: 3px 0 0;
+  opacity: 0.8;
 }
 
 .plan-list {
@@ -2470,6 +2474,17 @@ body {
   line-height: 1.4;
 }
 
+.plan-item__subtitle-ar {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #1565c0;
+  margin: 2px 0 0;
+  direction: rtl;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
 
 /* ═══════════════════════════════════════════════════════════
    SLIDE 5 — DIPLÔMES & PARCOURS
@@ -2541,9 +2556,10 @@ body {
 .dipl-header__subtitle-ar {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 12px;
-  color: #64b5f6;
+  color: #0d3b82;
   direction: rtl;
   margin: 3px 0 0;
+  opacity: 0.8;
 }
 
 /* Institution row */
@@ -2927,9 +2943,10 @@ body {
 .ecol-header__subtitle {
   font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 11px;
-  color: #64b5f6;
+  color: #0d3b82;
   margin: 1px 0 0;
   direction: rtl;
+  opacity: 0.8;
 }
 
 /* Access type row */
