@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur d'Orientation Intelligent - ComeToStudy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #004aad 0%, #0a2a66 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            padding: 40px;
+        }
+
+        .section-title {
+            color: #004aad;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+            border-left: 5px solid #ff9800;
+            padding-left: 15px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 8px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #004aad;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,74,173,0.1);
+        }
+
+        .range-container {
+            margin: 15px 0;
+        }
+
+        .range-container label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type=range] {
+            padding: 0;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            -webkit-appearance: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: #004aad;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,74,173,0.5);
+        }
+
+        .note-group {
+            background: #f5f9ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .pill {
+            display: inline-block;
+            background: #eef2f7;
+            color: #333;
+            padding: 10px 18px;
+            border-radius: 30px;
+            margin: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,74,173,0.2);
+            background: #e0e7ff;
+        }
+
+        .pill.selected {
+            background: #87CEEB !important;
+            color: #004aad;
+            font-weight: bold;
+            border: 2px solid #004aad;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(135,206,235,0.6);
+        }
+
+        .pill:active {
+            transform: scale(0.95);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 20px 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255,152,0,0.4);
+        }
+
+        .result {
+            background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            display: none;
+            border: 3px solid #004aad;
+            box-shadow: 0 10px 30px rgba(0,74,173,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result h2 {
+            color: #004aad;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #ff9800;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .badge {
+            background: #004aad;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .badge.salaire {
+            background: #28a745;
+            font-size: 1.1em;
+            padding: 12px 25px;
+        }
+
+        .metier-desc {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+            line-height: 1.6;
+        }
+
+        .progress {
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #004aad, #00bcd4);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease;
+            text-align: center;
+            color: white;
+            font-size: 10px;
+            line-height: 12px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin: 15px 0;
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,211,102,0.3);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+
+        .action-btn.rdv {
+            background: #25D366;
+            color: white;
+        }
+
+        .action-btn.rdv:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.bilan {
+            background: #004aad;
+            color: white;
+        }
+
+        .action-btn.bilan:hover {
+            background: #0a2a66;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.print {
+            background: #6c757d;
+            color: white;
+        }
+
+        .action-btn.print:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.reset {
+            background: #ff9800;
+            color: white;
+        }
+
+        .action-btn.reset:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .close-result {
+            float: right;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: -10px;
+            width: auto;
+        }
+
+        .close-result:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #004aad;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .comparison-table th {
+            background: #004aad;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:hover {
+            background: #f5f9ff;
+        }
+
+        .score-high {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .score-medium {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .score-low {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Simulateur d'Orientation Tawjeeh</h1>
+            <p>Découvre le parcours qui te correspond vraiment !</p>
+        </div>
+
+        <div class="form-section">
+            <!-- Informations personnelles -->
+            <div class="section-title">👤 Informations personnelles</div>
+            <div class="grid-2">
+                <input type="text" id="nom" placeholder="Nom complet" value="KARIM FOUHAM">
+                <input type="text" id="ville" placeholder="Ville" value="KHOURIBGA">
+                <input type="tel" id="tel" placeholder="Téléphone WhatsApp" value="0632680041">
+                <input type="email" id="email" placeholder="Email" value="fouhamkarim@gmail.com">
+            </div>
+
+            <!-- Notes et résultats scolaires -->
+            <div class="section-title">📚 Résultats scolaires</div>
+            <div class="note-group">
+                <div class="grid-2">
+                    <div>
+                        <label>📊 Note Examen Régional (/20)</label>
+                        <input type="number" id="noteRegion" min="0" max="20" step="0.5" value="15">
+                    </div>
+                    <div>
+                        <label>🎯 Note Examen National (/20)</label>
+                        <input type="number" id="noteNational" min="0" max="20" step="0.5" value="14">
+                    </div>
+                </div>
+                <div style="margin-top:15px;">
+                    <label>Série du Bac :</label>
+                    <select id="bac">
+                        <option value="maths">Sciences Mathématiques</option>
+                        <option value="svt">Sciences SVT</option>
+                        <option value="pc">Sciences Physiques</option>
+                        <option value="eco">Sciences Économiques</option>
+                        <option value="lettres">Lettres et Sciences Humaines</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Matières fortes -->
+            <div class="section-title">💪 Mes points forts</div>
+            <div id="matieresFavorites" class="badge-container">
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="maths">📐 Mathématiques</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="pc">⚗️ Physique-Chimie</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="svt">🧬 SVT</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="francais">📖 Français</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="anglais">🇬🇧 Anglais</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="eco">📊 Économie</span>
+                <span class="pill" onclick="toggleMatiere(this)" data-matiere="philo">🤔 Philosophie</span>
+            </div>
+
+            <!-- Capacité de travail -->
+            <div class="section-title">⏱️ Capacité de travail</div>
+            <div class="range-container">
+                <label>Nombre d'heures de travail par jour : <span id="heuresValue">6</span>h</label>
+                <input type="range" id="heuresTravail" min="1" max="12" value="6" oninput="heuresValue.innerText = this.value">
+            </div>
+
+            <!-- Préférences horaires -->
+            <div class="section-title">🌓 Préférences horaires</div>
+            <select id="horairePref">
+                <option value="jour">☀️ Je préfère travailler le jour</option>
+                <option value="nuit">🌙 Je préfère travailler la nuit</option>
+                <option value="flexible">🔄 Je suis flexible</option>
+            </select>
+
+            <!-- Type d'activité préféré -->
+            <div class="section-title">🔧 Quel type d'activité préfères-tu ?</div>
+            <div class="badge-container" id="activitesPreferees">
+                <span class="pill" onclick="toggleActivite(this)" data-activite="problemes">🧩 Résoudre des problèmes</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="terrain">🏗️ Travailler sur le terrain/chantier</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="bureau">💼 Travailler dans un bureau</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="soigner">🏥 Soigner / Aider les gens</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="animaux">🐾 Travailler avec les animaux</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="enseigner">👨‍🏫 Enseigner / Former</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="creer">🎨 Créer / Innover</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="management">👔 Manager / Diriger</span>
+                <span class="pill" onclick="toggleActivite(this)" data-activite="recherche">🔬 Recherche scientifique</span>
+            </div>
+
+            <!-- Aversion pour le sang -->
+            <div class="section-title">🩸 Aversion pour le sang</div>
+            <select id="sang">
+                <option value="non">✅ Je n'ai pas peur du sang</option>
+                <option value="oui">❌ J'ai peur du sang / je ne supporte pas</option>
+                <option value="moyen">⚠️ Cela dépend / Je suis mitigé</option>
+            </select>
+
+            <!-- Mobilité et budget -->
+            <div class="section-title">🌍 Mobilité et budget</div>
+            <div class="grid-2">
+                <select id="mobilite">
+                    <option value="maroc">🏠 Je préfère rester dans ma ville</option>
+                    <option value="autreVille">🚌 Je peux étudier dans une autre ville</option>
+                    <option value="etranger">✈️ Je veux étudier à l'étranger</option>
+                </select>
+                <select id="budget">
+                    <option value="faible">💰 Budget limité (moins de 2000 DH/mois)</option>
+                    <option value="moyen">💰💰 Budget moyen (2000-5000 DH/mois)</option>
+                    <option value="eleve">💰💰💰 Budget élevé (plus de 5000 DH/mois)</option>
+                </select>
+            </div>
+
+            <!-- Nouveaux critères améliorés -->
+            <div class="section-title">🧠 Personnalité et soft skills</div>
+            <div class="grid-3">
+                <select id="travailEquipe">
+                    <option value="seul">👤 Je préfère travailler seul</option>
+                    <option value="equipe">👥 Je préfère travailler en équipe</option>
+                    <option value="mixte">🤝 Les deux me conviennent</option>
+                </select>
+                <select id="stress">
+                    <option value="faible">😌 Je gère bien le stress</option>
+                    <option value="moyen">😐 Je supporte un stress modéré</option>
+                    <option value="eleve">😰 Le stress me bloque</option>
+                </select>
+                <select id="creativite">
+                    <option value="faible">📋 J'aime suivre des procédures</option>
+                    <option value="moyen">🎨 Je suis parfois créatif</option>
+                    <option value="eleve">💡 Je suis très créatif / innovant</option>
+                </select>
+            </div>
+
+            <!-- Langues -->
+            <div class="section-title">🗣️ Niveau en langues</div>
+            <div class="grid-3">
+                <select id="francais">
+                    <option value="debutant">Français : Débutant</option>
+                    <option value="intermediaire">Français : Intermédiaire</option>
+                    <option value="avance" selected>Français : Avancé</option>
+                    <option value="bilingue">Français : Bilingue</option>
+                </select>
+                <select id="anglais">
+                    <option value="debutant">Anglais : Débutant</option>
+                    <option value="intermediaire" selected>Anglais : Intermédiaire</option>
+                    <option value="avance">Anglais : Avancé</option>
+                    <option value="bilingue">Anglais : Bilingue</option>
+                </select>
+                <select id="arabe">
+                    <option value="debutant">Arabe : Débutant</option>
+                    <option value="intermediaire">Arabe : Intermédiaire</option>
+                    <option value="avance" selected>Arabe : Avancé</option>
+                    <option value="bilingue">Arabe : Bilingue</option>
+                </select>
+            </div>
+
+            <!-- Centres d'intérêt -->
+            <div class="section-title">🌟 Centres d'intérêt</div>
+            <div class="badge-container" id="interets">
+                <span class="pill" onclick="toggleInteret(this)" data-interet="tech">💻 Technologies</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="sante">🏥 Santé / Bien-être</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="nature">🌿 Nature / Environnement</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="art">🎨 Art / Design</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="sport">⚽ Sport</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="voyage">✈️ Voyage</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="business">📈 Business</span>
+                <span class="pill" onclick="toggleInteret(this)" data-interet="science">🔬 Science</span>
+            </div>
+
+            <!-- Bouton principal -->
+            <button onclick="simulerOrientation()">🔮 Voir mon parcours personnalisé</button>
+
+            <!-- Bouton WhatsApp direct -->
+            <a href="https://wa.me/212632680041?text=Bonjour%20ComeToStudy%2C%20je%20suis%20KARIM%20FOUHAM%20de%20KHOURIBGA%20et%20je%20souhaite%20avoir%20plus%20d%27informations%20sur%20l%27orientation" 
+               class="whatsapp-btn" 
+               target="_blank">
+                📱 Contactez-nous sur WhatsApp +212 6 32 68 00 41
+            </a>
+
+            <!-- Section des résultats (cachée par défaut) -->
+            <div id="resultat" class="result">
+                <button class="close-result" onclick="fermerResultat()">✖ Fermer</button>
+                <h2>🎉 Ton parcours personnalisé</h2>
+                
+                <div class="result-card">
+                    <h3>🏆 Top 3 des parcours recommandés</h3>
+                    <div id="topParcours" class="badge-container"></div>
+                    
+                    <h3 style="margin-top:15px;">🏫 Établissements recommandés</h3>
+                    <div id="ecolesResult" class="badge-container"></div>
+                    
+                    <h3 style="margin-top:15px;">📅 Filières adaptées</h3>
+                    <div id="filieresResult" class="badge-container"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>💼 Métier recommandé</h3>
+                    <div id="metierPrincipal" style="font-size:1.3em; font-weight:bold; color:#004aad; margin-bottom:10px;"></div>
+                    <div id="descriptionMetier" class="metier-desc"></div>
+                    
+                    <h3 style="margin-top:15px;">💰 Salaire moyen au Maroc</h3>
+                    <div id="salaireResult" class="badge salaire"></div>
+                    
+                    <h3 style="margin-top:15px;">📊 Perspectives d'évolution</h3>
+                    <p id="evolutionResult" style="font-style:italic;"></p>
+                </div>
+
+                <div class="result-card">
+                    <h3>📈 Analyse détaillée de ton profil</h3>
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <div class="stat-value" id="matchScore">0%</div>
+                            <div class="stat-label">Correspondance</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="dureeValue">0 ans</div>
+                            <div class="stat-label">Durée études</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="difficulteValue">Moyenne</div>
+                            <div class="stat-label">Difficulté</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress">
+                        <div class="progress-bar" id="matchBar"></div>
+                    </div>
+                    
+                    <h3 style="margin-top:15px;">⏳ Durée des études</h3>
+                    <p id="dureeResult" style="font-size:1.2em; font-weight:bold;"></p>
+                    
+                    <h3 style="margin-top:15px;">📋 Compétences clés à développer</h3>
+                    <div id="competencesResult" class="badge-container"></div>
+                </div>
+
+                <!-- Tableau comparatif -->
+                <div class="result-card">
+                    <h3>📊 Comparaison des parcours</h3>
+                    <table class="comparison-table" id="comparisonTable">
+                        <thead>
+                            <tr>
+                                <th>Parcours</th>
+                                <th>Score</th>
+                                <th>Durée</th>
+                                <th>Salaire débutant</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparisonBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Conseils personnalisés -->
+                <div class="result-card">
+                    <h3>💡 Conseils personnalisés</h3>
+                    <div id="conseilsResult" style="line-height:1.8;"></div>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="action-buttons">
+                    <a id="whatsappBtn" target="_blank" class="action-btn rdv">📞 Prendre RDV</a>
+                    <button onclick="telechargerBilan()" class="action-btn bilan">📄 Télécharger</button>
+                    <button onclick="imprimerResultat()" class="action-btn print">🖨️ Imprimer</button>
+                    <button onclick="recommencer()" class="action-btn reset">🔄 Recommencer</button>
+                </div>
+                
+                <!-- Partage sur les réseaux -->
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <button onclick="partagerFacebook()" style="background:#1877f2; flex:1;">📘 Facebook</button>
+                    <button onclick="partagerTwitter()" style="background:#1da1f2; flex:1;">🐦 Twitter</button>
+                    <button onclick="partagerLinkedin()" style="background:#0077b5; flex:1;">🔗 LinkedIn</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 ComeToStudy - Tous droits réservés | Simulateur intelligent d'orientation v2.0
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let matieresSelectionnees = [];
+        let activitesSelectionnees = [];
+        let interetsSelectionnes = [];
+        let dernierResultat = null;
+        let top3Parcours = [];
+
+        // Fonctions pour les badges
+        function toggleMatiere(element) {
+            element.classList.toggle('selected');
+            let matiere = element.getAttribute('data-matiere');
+            if (matieresSelectionnees.includes(matiere)) {
+                matieresSelectionnees = matieresSelectionnees.filter(m => m !== matiere);
+            } else {
+                matieresSelectionnees.push(matiere);
+            }
+            console.log("Matières sélectionnées:", matieresSelectionnees);
+        }
+
+        function toggleActivite(element) {
+            element.classList.toggle('selected');
+            let activite = element.getAttribute('data-activite');
+            if (activitesSelectionnees.includes(activite)) {
+                activitesSelectionnees = activitesSelectionnees.filter(a => a !== activite);
+            } else {
+                activitesSelectionnees.push(activite);
+            }
+            console.log("Activités sélectionnées:", activitesSelectionnees);
+        }
+
+        function toggleInteret(element) {
+            element.classList.toggle('selected');
+            let interet = element.getAttribute('data-interet');
+            if (interetsSelectionnes.includes(interet)) {
+                interetsSelectionnes = interetsSelectionnes.filter(i => i !== interet);
+            } else {
+                interetsSelectionnes.push(interet);
+            }
+            console.log("Intérêts sélectionnés:", interetsSelectionnes);
+        }
+
+        // Base de données améliorée des formations et métiers
+        const orientationDB = {
+            medecine: {
+                nom: "Médecine",
+                filieres: ["Médecine Générale", "Pharmacie", "Médecine Dentaire", "Gynécologie", "Pédiatrie"],
+                ecoles: ["Faculté de Médecine (Casablanca)", "Faculté de Médecine (Rabat)", "Faculté de Médecine (Fès)", "Faculté de Pharmacie (Rabat)"],
+                metier: {
+                    titre: "Médecin Généraliste",
+                    description: "Le médecin généraliste est le premier recours des patients. Il diagnostique les maladies, prescrit des traitements et suit ses patients sur le long terme. Il peut travailler en cabinet privé, à l'hôpital ou en centre de santé.",
+                    quotidien: "Consultations (environ 20-30 patients par jour), diagnostics, prescriptions, suivi des patients, travail administratif, gardes parfois la nuit.",
+                    evolution: "Spécialisation possible (cardiologie, pédiatrie, chirurgie...) après concours."
+                },
+                salaire: "Débutant: 8 000 - 12 000 MAD/mois | Confirmé: 15 000 - 30 000 MAD/mois | Spécialiste: 35 000 - 50 000 MAD/mois",
+                duree: "7 ans (minimum) + spécialisation (4-5 ans)",
+                difficulte: "Très élevée",
+                competences: ["Empathie", "Résistance au stress", "Travail en équipe", "Prise de décision rapide", "Organisation"],
+                conditions: {
+                    bac: ["svt", "pc"],
+                    notes: { minNational: 15, minRegion: 16 },
+                    travail: 8,
+                    sang: "non",
+                    activites: ["soigner"],
+                    stress: "eleve",
+                    equipe: ["equipe", "mixte"],
+                    langues: { francais: "avance", anglais: "intermediaire" },
+                    interets: ["sante", "science"]
+                },
+                score: 0
+            },
+            ingenieur: {
+                nom: "Ingénierie",
+                filieres: ["Informatique", "Génie Civil", "Génie Industriel", "Data Science", "Cybersécurité", "Intelligence Artificielle"],
+                ecoles: ["ENSA", "EMI (Rabat)", "INSEA", "ENSAM", "FST", "ENSIAS", "1337 (42)"],
+                metier: {
+                    titre: "Ingénieur en Informatique",
+                    description: "L'ingénieur en informatique conçoit et développe des solutions logicielles, des applications ou des systèmes d'information. Il peut travailler dans des entreprises tech, des banques, des startups ou en freelance.",
+                    quotidien: "Développement, tests, réunions avec les clients, documentation, gestion d'équipe, formation continue sur les nouvelles technologies.",
+                    evolution: "Chef de projet, Directeur technique, Consultant, Créateur de startup."
+                },
+                salaire: "Débutant: 6 000 - 10 000 MAD/mois | Confirmé: 12 000 - 18 000 MAD/mois | Senior: 20 000 - 30 000 MAD/mois",
+                duree: "5 ans",
+                difficulte: "Élevée",
+                competences: ["Logique", "Créativité", "Résolution de problèmes", "Veille technologique", "Travail d'équipe"],
+                conditions: {
+                    bac: ["maths", "pc"],
+                    notes: { minNational: 12, minRegion: 12 },
+                    travail: 6,
+                    activites: ["problemes", "creer", "recherche"],
+                    stress: "moyen",
+                    equipe: ["equipe", "mixte", "seul"],
+                    langues: { francais: "intermediaire", anglais: "intermediaire" },
+                    interets: ["tech", "science", "business"]
+                },
+                score: 0
+            },
+            enseignement: {
+                nom: "Enseignement",
+                filieres: ["CRMEF", "ENS", "Professorat", "Sciences de l'éducation"],
+                ecoles: ["ENS (Rabat, Casablanca, Fès)", "CRMEF", "Faculté des Sciences de l'Éducation"],
+                metier: {
+                    titre: "Professeur de l'enseignement secondaire",
+                    description: "Le professeur transmet ses connaissances à des élèves, prépare ses cours, évalue les acquis et participe à la vie de l'établissement.",
+                    quotidien: "Préparation des cours, enseignement (environ 20h/semaine), correction des copies, réunions pédagogiques, suivi des élèves.",
+                    evolution: "Directeur d'établissement, Inspecteur, Formateur."
+                },
+                salaire: "Débutant: 4 000 - 6 000 MAD/mois | Confirmé: 7 000 - 10 000 MAD/mois | Agrégé: 12 000 - 15 000 MAD/mois",
+                duree: "4-5 ans",
+                difficulte: "Moyenne",
+                competences: ["Pédagogie", "Patience", "Communication", "Autorité naturelle", "Créativité"],
+                conditions: {
+                    bac: ["lettres", "maths", "svt", "pc", "eco"],
+                    notes: { minNational: 12, minRegion: 12 },
+                    travail: 5,
+                    activites: ["enseigner"],
+                    stress: "moyen",
+                    equipe: ["equipe", "mixte"],
+                    langues: { francais: "avance", arabe: "avance" },
+                    interets: ["art", "science"]
+                },
+                score: 0
+            },
+            veterinaire: {
+                nom: "Vétérinaire",
+                filieres: ["Médecine Vétérinaire", "Agronomie"],
+                ecoles: ["IAV Hassan II (Rabat)", "Institut Agronomique", "ENA"],
+                metier: {
+                    titre: "Vétérinaire",
+                    description: "Le vétérinaire soigne les animaux de compagnie, d'élevage ou sauvages. Il réalise des consultations, des opérations, des vaccins et peut aussi travailler dans le contrôle sanitaire.",
+                    quotidien: "Consultations, chirurgie, urgences, visites en élevage, gestion administrative.",
+                    evolution: "Spécialisation (équine, bovine, animaux de compagnie), recherche, enseignement."
+                },
+                salaire: "Débutant: 5 000 - 8 000 MAD/mois | Confirmé: 10 000 - 15 000 MAD/mois | Spécialiste: 18 000 - 25 000 MAD/mois",
+                duree: "6 ans",
+                difficulte: "Élevée",
+                competences: ["Amour des animaux", "Minutie", "Résistance physique", "Empathie", "Observation"],
+                conditions: {
+                    bac: ["svt"],
+                    notes: { minNational: 14, minRegion: 14 },
+                    sang: "non",
+                    activites: ["animaux", "soigner"],
+                    stress: "moyen",
+                    equipe: ["seul", "mixte"],
+                    langues: { francais: "intermediaire" },
+                    interets: ["sante", "nature"]
+                },
+                score: 0
+            },
+            gestion: {
+                nom: "Gestion & Commerce",
+                filieres: ["Comptabilité", "Finance", "Marketing", "Management", "Ressources Humaines", "Logistique"],
+                ecoles: ["ENCG", "ISCAE", "FSJES", "HEC Maroc", "EMSI"],
+                metier: {
+                    titre: "Comptable / Auditeur",
+                    description: "Le comptable tient les comptes d'une entreprise, établit les bilans et les déclarations fiscales. L'auditeur vérifie la conformité des comptes et donne des conseils.",
+                    quotidien: "Saisie comptable, déclarations fiscales, bilans, relations avec les banques, conseil aux clients.",
+                    evolution: "Expert-comptable, Directeur financier, Commissaire aux comptes."
+                },
+                salaire: "Débutant: 4 000 - 6 000 MAD/mois | Confirmé: 8 000 - 12 000 MAD/mois | Expert: 15 000 - 25 000 MAD/mois",
+                duree: "3-5 ans",
+                difficulte: "Moyenne",
+                competences: ["Rigueur", "Organisation", "Analyse", "Discrétion", "Relation client"],
+                conditions: {
+                    bac: ["eco"],
+                    notes: { minNational: 11, minRegion: 11 },
+                    travail: 5,
+                    activites: ["bureau", "management"],
+                    stress: "faible",
+                    equipe: ["equipe", "mixte"],
+                    langues: { francais: "intermediaire", anglais: "intermediaire" },
+                    interets: ["business"]
+                },
+                score: 0
+            },
+            architecture: {
+                nom: "Architecture",
+                filieres: ["Architecture", "Urbanisme", "Design d'intérieur", "Paysagisme"],
+                ecoles: ["ENA (Rabat)", "Ecole d'Architecture (Casablanca)", "EAC"],
+                metier: {
+                    titre: "Architecte",
+                    description: "L'architecte conçoit des bâtiments et des espaces de vie. Il dessine les plans, suit les chantiers et veille au respect des normes.",
+                    quotidien: "Dessin de plans, rendez-vous clients, visites de chantier, démarches administratives, coordination avec les entreprises.",
+                    evolution: "Architecte en chef, Urbaniste, Designer, Chef de projet."
+                },
+                salaire: "Débutant: 5 000 - 8 000 MAD/mois | Confirmé: 10 000 - 15 000 MAD/mois | Renommé: 20 000 - 35 000 MAD/mois",
+                duree: "5-6 ans",
+                difficulte: "Élevée",
+                competences: ["Créativité", "Sens artistique", "Précision", "Relation client", "Connaissances techniques"],
+                conditions: {
+                    bac: ["maths"],
+                    notes: { minNational: 13, minRegion: 13 },
+                    activites: ["creer"],
+                    stress: "moyen",
+                    equipe: ["equipe", "mixte"],
+                    langues: { francais: "intermediaire", anglais: "intermediaire" },
+                    interets: ["art", "nature"]
+                },
+                score: 0
+            },
+            chantier: {
+                nom: "Travaux Publics",
+                filieres: ["Génie Civil", "BTP", "Topographie", "Géotechnique"],
+                ecoles: ["EST", "FST", "EMI", "EHTP", "ENSAM"],
+                metier: {
+                    titre: "Chef de chantier",
+                    description: "Le chef de chantier organise et supervise les travaux de construction. Il gère les équipes, le matériel et le planning. Il assure le respect des délais et de la sécurité.",
+                    quotidien: "Suivi de chantier, gestion des ouvriers, commandes de matériaux, contrôles qualité, réunions de coordination.",
+                    evolution: "Conducteur de travaux, Directeur de chantier, Ingénieur en chef."
+                },
+                salaire: "Débutant: 5 000 - 8 000 MAD/mois | Confirmé: 10 000 - 15 000 MAD/mois | Expérimenté: 18 000 - 25 000 MAD/mois",
+                duree: "3-5 ans",
+                difficulte: "Élevée",
+                competences: ["Autorité", "Organisation", "Résistance physique", "Gestion d'équipe", "Réactivité"],
+                conditions: {
+                    bac: ["maths", "pc"],
+                    notes: { minNational: 11, minRegion: 11 },
+                    travail: 6,
+                    activites: ["terrain"],
+                    stress: "eleve",
+                    equipe: ["equipe"],
+                    langues: { francais: "intermediaire" },
+                    interets: ["nature", "sport"]
+                },
+                score: 0
+            },
+            droit: {
+                nom: "Droit",
+                filieres: ["Droit privé", "Droit public", "Sciences politiques", "Carrières judiciaires"],
+                ecoles: ["Faculté de Droit", "ISCAE", "ENA"],
+                metier: {
+                    titre: "Avocat / Juriste",
+                    description: "L'avocat conseille et défend ses clients devant les tribunaux. Le juriste d'entreprise veille à la conformité légale des activités de l'entreprise.",
+                    quotidien: "Consultations juridiques, rédaction de contrats, plaidoiries, recherche juridique, négociations.",
+                    evolution: "Avocat spécialisé, Magistrat, Notaire, Directeur juridique."
+                },
+                salaire: "Débutant: 4 000 - 7 000 MAD/mois | Confirmé: 10 000 - 20 000 MAD/mois | Renommé: 25 000 - 50 000 MAD/mois",
+                duree: "5 ans",
+                difficulte: "Élevée",
+                competences: ["Éloquence", "Argumentation", "Analyse", "Rédaction", "Mémoire"],
+                conditions: {
+                    bac: ["lettres", "eco"],
+                    notes: { minNational: 13, minRegion: 13 },
+                    activites: ["bureau"],
+                    stress: "moyen",
+                    equipe: ["seul", "mixte"],
+                    langues: { francais: "avance", arabe: "avance", anglais: "intermediaire" },
+                    interets: ["business"]
+                },
+                score: 0
+            },
+            journalisme: {
+                nom: "Journalisme",
+                filieres: ["Journalisme", "Communication", "Médias", "Relations publiques"],
+                ecoles: ["ISIC", "ESJC", "FSJES"],
+                metier: {
+                    titre: "Journaliste",
+                    description: "Le journaliste recherche, vérifie et présente l'information au public. Il peut travailler pour la presse écrite, la radio, la télévision ou le web.",
+                    quotidien: "Recherche d'informations, interviews, rédaction d'articles, reportages, montage.",
+                    evolution: "Rédacteur en chef, Chef de rubrique, Correspondant à l'étranger."
+                },
+                salaire: "Débutant: 3 500 - 5 000 MAD/mois | Confirmé: 6 000 - 10 000 MAD/mois | Renommé: 12 000 - 20 000 MAD/mois",
+                duree: "3-4 ans",
+                difficulte: "Moyenne",
+                competences: ["Curiosité", "Rédaction", "Relationnel", "Réactivité", "Objectivité"],
+                conditions: {
+                    bac: ["lettres", "eco"],
+                    notes: { minNational: 12, minRegion: 12 },
+                    activites: ["creer"],
+                    stress: "eleve",
+                    equipe: ["equipe", "mixte"],
+                    langues: { francais: "avance", arabe: "avance", anglais: "intermediaire" },
+                    interets: ["art", "voyage"]
+                },
+                score: 0
+            }
+        };
+
+        function simulerOrientation() {
+            console.log("Fonction simulerOrientation appelée");
+            
+            // Récupération des valeurs
+            const nom = document.getElementById('nom').value;
+            const noteNational = parseFloat(document.getElementById('noteNational').value);
+            const noteRegion = parseFloat(document.getElementById('noteRegion').value);
+            const bac = document.getElementById('bac').value;
+            const heuresTravail = parseInt(document.getElementById('heuresTravail').value);
+            const horairePref = document.getElementById('horairePref').value;
+            const sang = document.getElementById('sang').value;
+            const mobilite = document.getElementById('mobilite').value;
+            const budget = document.getElementById('budget').value;
+            const travailEquipe = document.getElementById('travailEquipe').value;
+            const stress = document.getElementById('stress').value;
+            const creativite = document.getElementById('creativite').value;
+            const francais = document.getElementById('francais').value;
+            const anglais = document.getElementById('anglais').value;
+            const arabe = document.getElementById('arabe').value;
+
+            console.log("Valeurs récupérées:", {nom, noteNational, noteRegion, bac, heuresTravail, sang});
+
+            // Validation
+            if (!nom) {
+                alert("❌ Veuillez entrer votre nom");
+                return;
+            }
+
+            if (isNaN(noteNational) || isNaN(noteRegion)) {
+                alert("❌ Veuillez entrer des notes valides");
+                return;
+            }
+
+            // Réinitialiser les scores
+            for (let key in orientationDB) {
+                orientationDB[key].score = 0;
+            }
+
+            // Calcul des scores pour chaque parcours
+            for (let key in orientationDB) {
+                let parcours = orientationDB[key];
+                let conditions = parcours.conditions;
+
+                // Vérification du bac (20 pts)
+                if (conditions.bac && conditions.bac.includes(bac)) {
+                    parcours.score += 20;
+                }
+
+                // Vérification des notes (20 pts)
+                if (conditions.notes) {
+                    if (noteNational >= conditions.notes.minNational) parcours.score += 10;
+                    if (noteRegion >= conditions.notes.minRegion) parcours.score += 10;
+                }
+
+                // Capacité de travail (10 pts)
+                if (conditions.travail) {
+                    if (heuresTravail >= conditions.travail) {
+                        parcours.score += 10;
+                    } else if (heuresTravail >= conditions.travail - 2) {
+                        parcours.score += 5;
+                    }
+                }
+
+                // Aversion pour le sang (10 pts)
+                if (conditions.sang) {
+                    if (conditions.sang === sang) {
+                        parcours.score += 10;
+                    } else if (sang === "moyen") {
+                        parcours.score += 3;
+                    }
+                }
+
+                // Activités préférées (15 pts max - 5 pts par match)
+                if (conditions.activites && activitesSelectionnees.length > 0) {
+                    let matchActivites = conditions.activites.filter(act => activitesSelectionnees.includes(act));
+                    parcours.score += Math.min(matchActivites.length * 5, 15);
+                }
+
+                // Matières favorites (10 pts max - 2 pts par match)
+                if (conditions.bac && matieresSelectionnees.length > 0) {
+                    let matchMatieres = matieresSelectionnees.filter(m => conditions.bac.includes(m));
+                    parcours.score += Math.min(matchMatieres.length * 2, 10);
+                }
+
+                // Intérêts (10 pts max - 2 pts par match)
+                if (conditions.interets && interetsSelectionnes.length > 0) {
+                    let matchInterets = conditions.interets.filter(i => interetsSelectionnes.includes(i));
+                    parcours.score += Math.min(matchInterets.length * 2, 10);
+                }
+
+                // Travail en équipe (5 pts)
+                if (conditions.equipe && conditions.equipe.includes(travailEquipe)) {
+                    parcours.score += 5;
+                }
+
+                // Gestion du stress (5 pts)
+                if (conditions.stress === stress) {
+                    parcours.score += 5;
+                } else if (stress === "moyen" && conditions.stress === "eleve") {
+                    parcours.score += 2;
+                }
+
+                // Niveau de langues (10 pts)
+                if (conditions.langues) {
+                    if (conditions.langues.francais === francais) parcours.score += 3;
+                    if (conditions.langues.anglais === anglais) parcours.score += 3;
+                    if (conditions.langues.arabe === arabe) parcours.score += 4;
+                }
+
+                // Bonus mobilité/budget (5 pts)
+                if (mobilite === "etranger" && (key === "ingenieur" || key === "medecine" || key === "architecture")) {
+                    parcours.score += 5;
+                }
+                if (budget === "eleve" && (key === "medecine" || key === "architecture" || key === "droit")) {
+                    parcours.score += 5;
+                }
+
+                console.log(`Score pour ${key}: ${parcours.score}`);
+            }
+
+            // Trier par score
+            let sortedParcours = Object.keys(orientationDB)
+                .map(key => ({ key, ...orientationDB[key] }))
+                .sort((a, b) => b.score - a.score);
+
+            // Prendre le top 3
+            top3Parcours = sortedParcours.slice(0, 3);
+            let topParcours = sortedParcours[0];
+            dernierResultat = topParcours;
+
+            console.log("Meilleur parcours:", topParcours);
+
+            // Afficher le top 3
+            document.getElementById('topParcours').innerHTML = top3Parcours.map((p, index) => {
+                let medal = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
+                return `<span class="badge" style="background:${index === 0 ? '#ffd700' : index === 1 ? '#c0c0c0' : '#cd7f32'}; color:#000;">${medal} ${p.nom} (${p.score}%)</span>`;
+            }).join('');
+
+            // Afficher les résultats détaillés
+            document.getElementById('ecolesResult').innerHTML = topParcours.ecoles.map(e => `<span class="badge">${e}</span>`).join('');
+            document.getElementById('filieresResult').innerHTML = topParcours.filieres.map(f => `<span class="badge">${f}</span>`).join('');
+            
+            // Métier principal avec description
+            document.getElementById('metierPrincipal').innerHTML = topParcours.metier.titre;
+            document.getElementById('descriptionMetier').innerHTML = `
+                <strong>📝 Description :</strong> ${topParcours.metier.description}<br><br>
+                <strong>⏰ Quotidien :</strong> ${topParcours.metier.quotidien}
+            `;
+            
+            document.getElementById('salaireResult').innerHTML = topParcours.salaire;
+            document.getElementById('evolutionResult').innerHTML = topParcours.metier.evolution;
+            document.getElementById('dureeResult').innerHTML = topParcours.duree;
+            
+            // Statistiques
+            let matchScore = Math.min(topParcours.score, 100);
+            document.getElementById('matchScore').innerHTML = matchScore + '%';
+            document.getElementById('dureeValue').innerHTML = topParcours.duree;
+            document.getElementById('difficulteValue').innerHTML = topParcours.difficulte;
+            
+            // Barre de progression
+            document.getElementById('matchBar').style.width = matchScore + '%';
+            document.getElementById('matchBar').innerHTML = matchScore + '%';
+
+            // Compétences
+            document.getElementById('competencesResult').innerHTML = topParcours.competences.map(c => `<span class="badge" style="background:#28a745;">${c}</span>`).join('');
+
+            // Conseils personnalisés
+            let conseils = [];
+            if (matchScore < 50) {
+                conseils.push("🔍 Ton profil est encore en exploration. N'hésite pas à découvrir davantage de filières.");
+            } else if (matchScore < 70) {
+                conseils.push("📚 Bonne adéquation ! Travaille sur les matières clés pour renforcer ton dossier.");
+            } else {
+                conseils.push("🌟 Excellent profil ! Tu as trouvé une voie qui te correspond parfaitement.");
+            }
+            
+            if (topParcours.conditions.travail && heuresTravail < topParcours.conditions.travail) {
+                conseils.push(`⏱️ Ce parcours demande environ ${topParcours.conditions.travail}h de travail par jour. Essaye d'augmenter ta capacité de travail.`);
+            }
+            
+            if (topParcours.conditions.langues && topParcours.conditions.langues.anglais === "avance" && anglais !== "avance") {
+                conseils.push("🇬🇧 Améliore ton anglais pour accéder aux meilleures opportunités dans ce domaine.");
+            }
+            
+            document.getElementById('conseilsResult').innerHTML = conseils.map(c => `<p>${c}</p>`).join('');
+
+            // Tableau comparatif
+            let comparisonHTML = '';
+            top3Parcours.forEach(p => {
+                let scoreClass = p.score >= 70 ? 'score-high' : (p.score >= 50 ? 'score-medium' : 'score-low');
+                let salaireDebutant = p.salaire.split('|')[0].replace('Débutant:', '').trim();
+                comparisonHTML += `<tr>
+                    <td><strong>${p.nom}</strong></td>
+                    <td class="${scoreClass}">${p.score}%</td>
+                    <td>${p.duree}</td>
+                    <td>${salaireDebutant}</td>
+                </tr>`;
+            });
+            document.getElementById('comparisonBody').innerHTML = comparisonHTML;
+
+            // Lien WhatsApp personnalisé pour RDV
+            let message = `Bonjour ComeToStudy, je suis ${nom} de ${document.getElementById('ville').value} (tél: ${document.getElementById('tel').value}). Suite à ma simulation, mon profil correspond à : ${topParcours.metier.titre} (score: ${matchScore}%). Mes top 3 parcours sont : ${top3Parcours.map(p => p.nom).join(', ')}. Je souhaite un rendez-vous d'orientation personnalisé.`;
+            document.getElementById('whatsappBtn').href = `https://wa.me/212632680041?text=${encodeURIComponent(message)}`;
+
+            // Afficher le résultat
+            document.getElementById('resultat').style.display = 'block';
+
+            // Scroll vers les résultats
+            document.getElementById('resultat').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function fermerResultat() {
+            document.getElementById('resultat').style.display = 'none';
+        }
+
+        function telechargerBilan() {
+            if (!dernierResultat) {
+                alert("Veuillez d'abord lancer une simulation");
+                return;
+            }
+
+            const nom = document.getElementById('nom').value;
+            const date = new Date().toLocaleDateString('fr-FR');
+            const contenu = `
+                BILAN D'ORIENTATION COMPLET - ComeToStudy
+                ==================================================
+                Généré le : ${date}
+                
+                INFORMATIONS PERSONNELLES
+                -------------------------
+                Nom: ${nom}
+                Ville: ${document.getElementById('ville').value}
+                Email: ${document.getElementById('email').value}
+                Téléphone: ${document.getElementById('tel').value}
+                Bac: ${document.getElementById('bac').options[document.getElementById('bac').selectedIndex].text}
+                
+                RÉSULTATS DE LA SIMULATION
+                --------------------------
+                🥇 MÉTIER RECOMMANDÉ: ${dernierResultat.metier.titre}
+                Score de correspondance: ${document.getElementById('matchScore').innerHTML}
+                
+                📊 TOP 3 DES PARCOURS:
+                ${top3Parcours.map((p, i) => `   ${i+1}. ${p.nom} (${p.score}%)`).join('\n')}
+                
+                ÉTABLISSEMENTS RECOMMANDÉS:
+                ${dernierResultat.ecoles.map(e => `   • ${e}`).join('\n')}
+                
+                FILIÈRES ADAPTÉES:
+                ${dernierResultat.filieres.map(f => `   • ${f}`).join('\n')}
+                
+                SALAIRE MOYEN: ${dernierResultat.salaire}
+                DURÉE DES ÉTUDES: ${dernierResultat.duree}
+                DIFFICULTÉ: ${dernierResultat.difficulte}
+                
+                DESCRIPTION DU MÉTIER
+                ---------------------
+                ${dernierResultat.metier.description}
+                
+                QUOTIDIEN
+                ---------
+                ${dernierResultat.metier.quotidien}
+                
+                PERSPECTIVES D'ÉVOLUTION
+                ------------------------
+                ${dernierResultat.metier.evolution}
+                
+                COMPÉTENCES CLÉS À DÉVELOPPER
+                -----------------------------
+                ${dernierResultat.competences.map(c => `   • ${c}`).join('\n')}
+                
+                CONSEILS PERSONNALISÉS
+                ----------------------
+                ${document.getElementById('conseilsResult').innerText.replace(/<[^>]*>/g, '').trim()}
+                
+                ==================================================
+                Rendez-vous sur ComeToStudy pour plus d'informations!
+                Contact: +212 6 32 68 00 41 | Email: contact@cometostudy.com
+            `;
+            
+            const blob = new Blob([contenu], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Bilan_Orientation_${nom.replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        function imprimerResultat() {
+            if (!dernierResultat) {
+                alert("Veuillez d'abord lancer une simulation");
+                return;
+            }
+            window.print();
+        }
+
+        function recommencer() {
+            // Réinitialiser les badges
+            document.querySelectorAll('.pill.selected').forEach(p => p.classList.remove('selected'));
+            matieresSelectionnees = [];
+            activitesSelectionnees = [];
+            interetsSelectionnes = [];
+            
+            // Réinitialiser les valeurs par défaut
+            document.getElementById('noteRegion').value = '15';
+            document.getElementById('noteNational').value = '14';
+            document.getElementById('heuresTravail').value = '6';
+            document.getElementById('heuresValue').innerText = '6';
+            document.getElementById('bac').value = 'maths';
+            document.getElementById('horairePref').value = 'jour';
+            document.getElementById('sang').value = 'non';
+            document.getElementById('mobilite').value = 'maroc';
+            document.getElementById('budget').value = 'moyen';
+            document.getElementById('travailEquipe').value = 'mixte';
+            document.getElementById('stress').value = 'moyen';
+            document.getElementById('creativite').value = 'moyen';
+            document.getElementById('francais').value = 'avance';
+            document.getElementById('anglais').value = 'intermediaire';
+            document.getElementById('arabe').value = 'avance';
+            
+            // Re-sélectionner les badges par défaut
+            const mathsPill = document.querySelector('.pill[data-matiere="maths"]');
+            const pcPill = document.querySelector('.pill[data-matiere="pc"]');
+            const problemesPill = document.querySelector('.pill[data-activite="problemes"]');
+            const techPill = document.querySelector('.pill[data-interet="tech"]');
+            
+            if (mathsPill) {
+                mathsPill.classList.add('selected');
+                matieresSelectionnees.push('maths');
+            }
+            if (pcPill) {
+                pcPill.classList.add('selected');
+                matieresSelectionnees.push('pc');
+            }
+            if (problemesPill) {
+                problemesPill.classList.add('selected');
+                activitesSelectionnees.push('problemes');
+            }
+            if (techPill) {
+                techPill.classList.add('selected');
+                interetsSelectionnes.push('tech');
+            }
+            
+            // Cacher les résultats
+            fermerResultat();
+            
+            // Scroll vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fonctions de partage social
+        function partagerFacebook() {
+            let url = encodeURIComponent(window.location.href);
+            let texte = encodeURIComponent(`Découvrez mon parcours d'orientation personnalisé sur ComeToStudy !`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texte}`, '_blank');
+        }
+
+        function partagerTwitter() {
+            let texte = encodeURIComponent(`Je viens de faire mon bilan d'orientation sur ComeToStudy ! Résultat : ${dernierResultat ? dernierResultat.metier.titre : 'À découvrir'}`);
+            window.open(`https://twitter.com/intent/tweet?text=${texte}`, '_blank');
+        }
+
+        function partagerLinkedin() {
+            let url = encodeURIComponent(window.location.href);
+            let titre = encodeURIComponent(`Mon bilan d'orientation ComeToStudy`);
+            let resume = encodeURIComponent(`J'ai trouvé mon parcours idéal : ${dernierResultat ? dernierResultat.metier.titre : 'À découvrir'}`);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        }
+
+        // Initialisation des badges sélectionnés au chargement
+        window.onload = function() {
+            console.log("Page chargée, initialisation des badges");
+            
+            // Sélectionner les badges par défaut
+            const mathsPill = document.querySelector('.pill[data-matiere="maths"]');
+            const pcPill = document.querySelector('.pill[data-matiere="pc"]');
+            const problemesPill = document.querySelector('.pill[data-activite="problemes"]');
+            const techPill = document.querySelector('.pill[data-interet="tech"]');
+            
+            if (mathsPill) {
+                mathsPill.classList.add('selected');
+                matieresSelectionnees.push('maths');
+            }
+            if (pcPill) {
+                pcPill.classList.add('selected');
+                matieresSelectionnees.push('pc');
+            }
+            if (problemesPill) {
+                problemesPill.classList.add('selected');
+                activitesSelectionnees.push('problemes');
+            }
+            if (techPill) {
+                techPill.classList.add('selected');
+                interetsSelectionnes.push('tech');
+            }
+            
+            console.log("Matières par défaut:", matieresSelectionnees);
+            console.log("Activités par défaut:", activitesSelectionnees);
+            console.log("Intérêts par défaut:", interetsSelectionnes);
+        };
+    </script>
+</body>
+</html>

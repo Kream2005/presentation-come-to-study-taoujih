@@ -1583,6 +1583,382 @@ const CriteresSlideContent = () => (
     </div>
 );
 
+// ─── SLIDE: Simulateur d'Orientation Intelligent ─────────────
+
+const orientationDB = {
+  medecine: {
+    nom: "Médecine",
+    filieres: ["Médecine Générale", "Pharmacie", "Médecine Dentaire", "Gynécologie", "Pédiatrie"],
+    ecoles: ["Faculté de Médecine (Casablanca)", "Faculté de Médecine (Rabat)", "Faculté de Médecine (Fès)"],
+    metier: { titre: "Médecin Généraliste", description: "Le médecin généraliste est le premier recours des patients. Il diagnostique les maladies, prescrit des traitements et suit ses patients sur le long terme.", quotidien: "Consultations (20-30 patients/jour), diagnostics, prescriptions, suivi des patients, gardes.", evolution: "Spécialisation possible (cardiologie, pédiatrie, chirurgie...) après concours." },
+    salaire: "8 000 – 12 000 MAD débutant | 35 000 – 50 000 MAD spécialiste",
+    duree: "7 ans minimum",
+    difficulte: "Très élevée",
+    competences: ["Empathie", "Résistance au stress", "Travail en équipe", "Prise de décision", "Organisation"],
+    conditions: { bac: ["svt", "pc"], notes: { minNational: 15, minRegion: 16 }, travail: 8, sang: "non", activites: ["soigner"], interets: ["sante", "science"] }
+  },
+  ingenieur: {
+    nom: "Ingénierie",
+    filieres: ["Informatique", "Génie Civil", "Data Science", "Cybersécurité", "Intelligence Artificielle"],
+    ecoles: ["ENSA", "EMI (Rabat)", "ENSIAS", "ENSAM", "FST"],
+    metier: { titre: "Ingénieur en Informatique", description: "L'ingénieur conçoit et développe des solutions logicielles, applications ou systèmes d'information pour des entreprises tech, banques ou startups.", quotidien: "Développement, tests, réunions clients, documentation, formation continue.", evolution: "Chef de projet, Directeur technique, Consultant, Créateur de startup." },
+    salaire: "6 000 – 10 000 MAD débutant | 20 000 – 30 000 MAD senior",
+    duree: "5 ans",
+    difficulte: "Élevée",
+    competences: ["Logique", "Créativité", "Résolution de problèmes", "Veille technologique", "Travail d'équipe"],
+    conditions: { bac: ["maths", "pc"], notes: { minNational: 12, minRegion: 12 }, travail: 6, activites: ["problemes", "creer", "recherche"], interets: ["tech", "science", "business"] }
+  },
+  enseignement: {
+    nom: "Enseignement",
+    filieres: ["CRMEF", "ENS", "Professorat", "Sciences de l'éducation"],
+    ecoles: ["ENS (Rabat, Casa, Fès)", "CRMEF", "Faculté des Sciences de l'Éducation"],
+    metier: { titre: "Professeur du secondaire", description: "Le professeur transmet ses connaissances, prépare ses cours, évalue les acquis et participe à la vie de l'établissement.", quotidien: "Préparation des cours, enseignement (~20h/semaine), correction, réunions pédagogiques.", evolution: "Directeur d'établissement, Inspecteur, Formateur." },
+    salaire: "4 000 – 6 000 MAD débutant | 12 000 – 15 000 MAD agrégé",
+    duree: "4-5 ans",
+    difficulte: "Moyenne",
+    competences: ["Pédagogie", "Patience", "Communication", "Autorité naturelle", "Créativité"],
+    conditions: { bac: ["lettres", "maths", "svt", "pc", "eco"], notes: { minNational: 12, minRegion: 12 }, travail: 5, activites: ["enseigner"], interets: ["art", "science"] }
+  },
+  veterinaire: {
+    nom: "Vétérinaire",
+    filieres: ["Médecine Vétérinaire", "Agronomie"],
+    ecoles: ["IAV Hassan II (Rabat)", "ENA"],
+    metier: { titre: "Vétérinaire", description: "Le vétérinaire soigne les animaux de compagnie, d'élevage ou sauvages. Consultations, opérations, vaccins et contrôle sanitaire.", quotidien: "Consultations, chirurgie, urgences, visites en élevage.", evolution: "Spécialisation (équine, bovine), recherche, enseignement." },
+    salaire: "5 000 – 8 000 MAD débutant | 18 000 – 25 000 MAD spécialiste",
+    duree: "6 ans",
+    difficulte: "Élevée",
+    competences: ["Amour des animaux", "Minutie", "Résistance physique", "Empathie", "Observation"],
+    conditions: { bac: ["svt"], notes: { minNational: 14, minRegion: 14 }, sang: "non", activites: ["animaux", "soigner"], interets: ["sante", "nature"] }
+  },
+  gestion: {
+    nom: "Gestion & Commerce",
+    filieres: ["Comptabilité", "Finance", "Marketing", "Management", "RH", "Logistique"],
+    ecoles: ["ENCG", "ISCAE", "FSJES", "HEC Maroc"],
+    metier: { titre: "Comptable / Auditeur", description: "Le comptable tient les comptes d'une entreprise, établit les bilans et les déclarations fiscales. L'auditeur vérifie la conformité.", quotidien: "Saisie comptable, déclarations fiscales, bilans, relations avec les banques.", evolution: "Expert-comptable, Directeur financier, Commissaire aux comptes." },
+    salaire: "4 000 – 6 000 MAD débutant | 15 000 – 25 000 MAD expert",
+    duree: "3-5 ans",
+    difficulte: "Moyenne",
+    competences: ["Rigueur", "Organisation", "Analyse", "Discrétion", "Relation client"],
+    conditions: { bac: ["eco"], notes: { minNational: 11, minRegion: 11 }, travail: 5, activites: ["bureau", "management"], interets: ["business"] }
+  },
+  architecture: {
+    nom: "Architecture",
+    filieres: ["Architecture", "Urbanisme", "Design d'intérieur", "Paysagisme"],
+    ecoles: ["ENA (Rabat)", "École d'Architecture (Casa)", "EAC"],
+    metier: { titre: "Architecte", description: "L'architecte conçoit des bâtiments et espaces de vie. Il dessine les plans, suit les chantiers et veille au respect des normes.", quotidien: "Dessin de plans, rendez-vous clients, visites de chantier, coordination.", evolution: "Architecte en chef, Urbaniste, Designer, Chef de projet." },
+    salaire: "5 000 – 8 000 MAD débutant | 20 000 – 35 000 MAD renommé",
+    duree: "5-6 ans",
+    difficulte: "Élevée",
+    competences: ["Créativité", "Sens artistique", "Précision", "Relation client", "Connaissances techniques"],
+    conditions: { bac: ["maths"], notes: { minNational: 13, minRegion: 13 }, activites: ["creer"], interets: ["art", "nature"] }
+  },
+  chantier: {
+    nom: "Travaux Publics",
+    filieres: ["Génie Civil", "BTP", "Topographie", "Géotechnique"],
+    ecoles: ["EST", "FST", "EMI", "EHTP", "ENSAM"],
+    metier: { titre: "Chef de chantier", description: "Le chef de chantier organise et supervise les travaux de construction. Il gère les équipes, le matériel et le planning.", quotidien: "Suivi de chantier, gestion des ouvriers, commandes de matériaux, contrôles qualité.", evolution: "Conducteur de travaux, Directeur de chantier, Ingénieur en chef." },
+    salaire: "5 000 – 8 000 MAD débutant | 18 000 – 25 000 MAD expérimenté",
+    duree: "3-5 ans",
+    difficulte: "Élevée",
+    competences: ["Autorité", "Organisation", "Résistance physique", "Gestion d'équipe", "Réactivité"],
+    conditions: { bac: ["maths", "pc"], notes: { minNational: 11, minRegion: 11 }, travail: 6, activites: ["terrain"], interets: ["nature", "sport"] }
+  },
+  droit: {
+    nom: "Droit",
+    filieres: ["Droit privé", "Droit public", "Sciences politiques", "Carrières judiciaires"],
+    ecoles: ["Faculté de Droit", "ISCAE", "ENA"],
+    metier: { titre: "Avocat / Juriste", description: "L'avocat conseille et défend ses clients devant les tribunaux. Le juriste veille à la conformité légale des activités.", quotidien: "Consultations juridiques, rédaction de contrats, plaidoiries, négociations.", evolution: "Avocat spécialisé, Magistrat, Notaire, Directeur juridique." },
+    salaire: "4 000 – 7 000 MAD débutant | 25 000 – 50 000 MAD renommé",
+    duree: "5 ans",
+    difficulte: "Élevée",
+    competences: ["Éloquence", "Argumentation", "Analyse", "Rédaction", "Mémoire"],
+    conditions: { bac: ["lettres", "eco"], notes: { minNational: 13, minRegion: 13 }, activites: ["bureau"], interets: ["business"] }
+  },
+  journalisme: {
+    nom: "Journalisme & Communication",
+    filieres: ["Journalisme", "Communication", "Médias", "Relations publiques"],
+    ecoles: ["ISIC", "ESJC", "FSJES"],
+    metier: { titre: "Journaliste", description: "Le journaliste recherche, vérifie et présente l'information au public via presse écrite, radio, TV ou web.", quotidien: "Recherche d'informations, interviews, rédaction d'articles, reportages.", evolution: "Rédacteur en chef, Chef de rubrique, Correspondant à l'étranger." },
+    salaire: "3 500 – 5 000 MAD débutant | 12 000 – 20 000 MAD renommé",
+    duree: "3-4 ans",
+    difficulte: "Moyenne",
+    competences: ["Curiosité", "Rédaction", "Relationnel", "Réactivité", "Objectivité"],
+    conditions: { bac: ["lettres", "eco"], notes: { minNational: 12, minRegion: 12 }, activites: ["creer"], interets: ["art", "voyage"] }
+  }
+};
+
+function computeOrientation(formData) {
+  const scores = {};
+  for (let key in orientationDB) {
+    let parcours = orientationDB[key];
+    let conditions = parcours.conditions;
+    let score = 0;
+
+    // Bac match (20 pts)
+    if (conditions.bac && conditions.bac.includes(formData.bac)) score += 20;
+
+    // Notes (20 pts)
+    if (conditions.notes) {
+      if (formData.noteNational >= conditions.notes.minNational) score += 10;
+      if (formData.noteRegion >= conditions.notes.minRegion) score += 10;
+    }
+
+    // Work capacity (10 pts)
+    if (conditions.travail) {
+      if (formData.heures >= conditions.travail) score += 10;
+      else if (formData.heures >= conditions.travail - 2) score += 5;
+    }
+
+    // Blood aversion (10 pts)
+    if (conditions.sang) {
+      if (conditions.sang === formData.sang) score += 10;
+      else if (formData.sang === "moyen") score += 3;
+    }
+
+    // Activities (15 pts max)
+    if (conditions.activites && formData.activites.length > 0) {
+      let match = conditions.activites.filter(a => formData.activites.includes(a));
+      score += Math.min(match.length * 5, 15);
+    }
+
+    // Subjects (10 pts max)
+    if (conditions.bac && formData.matieres.length > 0) {
+      let match = formData.matieres.filter(m => conditions.bac.includes(m));
+      score += Math.min(match.length * 3, 10);
+    }
+
+    // Interests (10 pts max)
+    if (conditions.interets && formData.interets.length > 0) {
+      let match = conditions.interets.filter(i => formData.interets.includes(i));
+      score += Math.min(match.length * 3, 10);
+    }
+
+    scores[key] = { ...parcours, score: Math.min(score, 100), key };
+  }
+
+  return Object.values(scores).sort((a, b) => b.score - a.score).slice(0, 3);
+}
+
+const SimPill = ({ label, selected, onClick }) => (
+  <span className={`sim-pill${selected ? ' sim-pill--active' : ''}`} onClick={onClick}>{label}</span>
+);
+
+const SimulatorSlideContent = () => {
+  const [step, setStep] = useState(0);
+  const [bac, setBac] = useState('maths');
+  const [noteNational, setNoteNational] = useState(14);
+  const [noteRegion, setNoteRegion] = useState(15);
+  const [heures, setHeures] = useState(6);
+  const [sang, setSang] = useState('non');
+  const [matieres, setMatieres] = useState([]);
+  const [activites, setActivites] = useState([]);
+  const [interets, setInterets] = useState([]);
+  const [results, setResults] = useState(null);
+
+  const toggleArr = (arr, setArr, val) => {
+    setArr(prev => prev.includes(val) ? prev.filter(v => v !== val) : [...prev, val]);
+  };
+
+  const runSimulation = () => {
+    const top3 = computeOrientation({ bac, noteNational, noteRegion, heures, sang, matieres, activites, interets });
+    setResults(top3);
+    setStep(3);
+  };
+
+  const reset = () => { setStep(0); setResults(null); setMatieres([]); setActivites([]); setInterets([]); setBac('maths'); setNoteNational(14); setNoteRegion(15); setHeures(6); setSang('non'); };
+
+  const allMatieres = [
+    { key: 'maths', label: '📐 Maths' }, { key: 'pc', label: '⚗️ Physique-Chimie' }, { key: 'svt', label: '🧬 SVT' },
+    { key: 'francais', label: '📖 Français' }, { key: 'anglais', label: '🇬🇧 Anglais' }, { key: 'eco', label: '📊 Économie' }
+  ];
+  const allActivites = [
+    { key: 'problemes', label: '🧩 Résoudre des problèmes' }, { key: 'terrain', label: '🏗️ Travail terrain' },
+    { key: 'bureau', label: '💼 Bureau' }, { key: 'soigner', label: '🏥 Soigner' },
+    { key: 'animaux', label: '🐾 Animaux' }, { key: 'enseigner', label: '👨‍🏫 Enseigner' },
+    { key: 'creer', label: '🎨 Créer' }, { key: 'management', label: '👔 Manager' }, { key: 'recherche', label: '🔬 Recherche' }
+  ];
+  const allInterets = [
+    { key: 'tech', label: '💻 Technologies' }, { key: 'sante', label: '🏥 Santé' },
+    { key: 'nature', label: '🌿 Nature' }, { key: 'art', label: '🎨 Art / Design' },
+    { key: 'sport', label: '⚽ Sport' }, { key: 'voyage', label: '✈️ Voyage' },
+    { key: 'business', label: '📈 Business' }, { key: 'science', label: '🔬 Science' }
+  ];
+
+  const stepLabels = ['Profil scolaire', 'Mes préférences', 'Personnalité', 'Résultats'];
+
+  return (
+    <div className="sim-slide">
+      <div className="sim-bg sim-bg-1" />
+      <div className="sim-bg sim-bg-2" />
+      <div className="sim-bg sim-bg-3" />
+
+      {/* Header */}
+      <div className="sim-header">
+        <div className="sim-header__badge">🎓 SIMULATEUR</div>
+        <h2 className="sim-header__title">Trouve ton parcours <span>idéal</span></h2>
+        <p className="sim-header__subtitle">شنو هو المسار اللي يناسبك؟</p>
+      </div>
+
+      {/* Progress bar */}
+      <div className="sim-progress">
+        {stepLabels.map((label, i) => (
+          <div key={i} className={`sim-progress__step${step >= i ? ' sim-progress__step--active' : ''}${step === i ? ' sim-progress__step--current' : ''}`}>
+            <div className="sim-progress__dot">{step > i ? '✓' : i + 1}</div>
+            <span className="sim-progress__label">{label}</span>
+          </div>
+        ))}
+        <div className="sim-progress__line">
+          <div className="sim-progress__fill" style={{ width: `${(step / 3) * 100}%` }} />
+        </div>
+      </div>
+
+      {/* Step content */}
+      <div className="sim-body">
+        {step === 0 && (
+          <div className="sim-step sim-step--0">
+            <div className="sim-step__title">📚 Ton profil scolaire</div>
+            <div className="sim-form-grid">
+              <div className="sim-field">
+                <label className="sim-label">Série du Bac</label>
+                <select className="sim-select" value={bac} onChange={e => setBac(e.target.value)}>
+                  <option value="maths">Sciences Mathématiques</option>
+                  <option value="svt">Sciences SVT</option>
+                  <option value="pc">Sciences Physiques</option>
+                  <option value="eco">Sciences Économiques</option>
+                  <option value="lettres">Lettres et Sciences Humaines</option>
+                </select>
+              </div>
+              <div className="sim-field">
+                <label className="sim-label">Note Examen Régional (/20)</label>
+                <input className="sim-input" type="number" min="0" max="20" step="0.5" value={noteRegion} onChange={e => setNoteRegion(parseFloat(e.target.value) || 0)} />
+              </div>
+              <div className="sim-field">
+                <label className="sim-label">Note Examen National (/20)</label>
+                <input className="sim-input" type="number" min="0" max="20" step="0.5" value={noteNational} onChange={e => setNoteNational(parseFloat(e.target.value) || 0)} />
+              </div>
+              <div className="sim-field">
+                <label className="sim-label">Heures de travail / jour : <strong>{heures}h</strong></label>
+                <input className="sim-range" type="range" min="1" max="12" value={heures} onChange={e => setHeures(parseInt(e.target.value))} />
+              </div>
+            </div>
+            <div className="sim-step__subtitle">💪 Mes matières fortes</div>
+            <div className="sim-pills">
+              {allMatieres.map(m => (
+                <SimPill key={m.key} label={m.label} selected={matieres.includes(m.key)} onClick={() => toggleArr(matieres, setMatieres, m.key)} />
+              ))}
+            </div>
+            <button className="sim-btn sim-btn--next" onClick={() => setStep(1)}>Suivant →</button>
+          </div>
+        )}
+
+        {step === 1 && (
+          <div className="sim-step sim-step--1">
+            <div className="sim-step__title">🔧 Quel type d'activité te plaît ?</div>
+            <div className="sim-pills">
+              {allActivites.map(a => (
+                <SimPill key={a.key} label={a.label} selected={activites.includes(a.key)} onClick={() => toggleArr(activites, setActivites, a.key)} />
+              ))}
+            </div>
+            <div className="sim-step__title" style={{ marginTop: '14px' }}>🌟 Tes centres d'intérêt</div>
+            <div className="sim-pills">
+              {allInterets.map(i => (
+                <SimPill key={i.key} label={i.label} selected={interets.includes(i.key)} onClick={() => toggleArr(interets, setInterets, i.key)} />
+              ))}
+            </div>
+            <div className="sim-nav">
+              <button className="sim-btn sim-btn--back" onClick={() => setStep(0)}>← Retour</button>
+              <button className="sim-btn sim-btn--next" onClick={() => setStep(2)}>Suivant →</button>
+            </div>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="sim-step sim-step--2">
+            <div className="sim-step__title">🩸 Aversion pour le sang</div>
+            <div className="sim-pills">
+              <SimPill label="✅ Pas peur" selected={sang === 'non'} onClick={() => setSang('non')} />
+              <SimPill label="⚠️ Mitigé" selected={sang === 'moyen'} onClick={() => setSang('moyen')} />
+              <SimPill label="❌ J'ai peur" selected={sang === 'oui'} onClick={() => setSang('oui')} />
+            </div>
+            <div className="sim-step__title" style={{ marginTop: '12px' }}>📋 Résumé de ton profil</div>
+            <div className="sim-summary">
+              <div className="sim-summary__item"><span>🎓 Bac</span><strong>{{ maths: 'Sc. Maths', svt: 'Sc. SVT', pc: 'Sc. Physiques', eco: 'Sc. Éco', lettres: 'Lettres' }[bac]}</strong></div>
+              <div className="sim-summary__item"><span>📊 Régional</span><strong>{noteRegion}/20</strong></div>
+              <div className="sim-summary__item"><span>🎯 National</span><strong>{noteNational}/20</strong></div>
+              <div className="sim-summary__item"><span>⏱️ Travail</span><strong>{heures}h/jour</strong></div>
+              {matieres.length > 0 && <div className="sim-summary__item"><span>💪 Matières</span><strong>{matieres.length} sélectionnées</strong></div>}
+              {activites.length > 0 && <div className="sim-summary__item"><span>🔧 Activités</span><strong>{activites.length} sélectionnées</strong></div>}
+              {interets.length > 0 && <div className="sim-summary__item"><span>🌟 Intérêts</span><strong>{interets.length} sélectionnés</strong></div>}
+            </div>
+            <div className="sim-nav">
+              <button className="sim-btn sim-btn--back" onClick={() => setStep(1)}>← Retour</button>
+              <button className="sim-btn sim-btn--launch" onClick={runSimulation}>🔮 Lancer la simulation</button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && results && (
+          <div className="sim-step sim-step--3">
+            <div className="sim-results">
+              {/* Top 3 medals */}
+              <div className="sim-top3">
+                {results.map((r, i) => {
+                  const medal = ['🥇', '🥈', '🥉'][i];
+                  const cls = ['sim-top3__card--gold', 'sim-top3__card--silver', 'sim-top3__card--bronze'][i];
+                  return (
+                    <div key={r.key} className={`sim-top3__card ${cls}`}>
+                      <div className="sim-top3__medal">{medal}</div>
+                      <div className="sim-top3__name">{r.nom}</div>
+                      <div className="sim-top3__score">{r.score}%</div>
+                      <div className="sim-top3__bar"><div className="sim-top3__fill" style={{ width: `${r.score}%` }} /></div>
+                      <div className="sim-top3__metier">{r.metier.titre}</div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Details of #1 */}
+              <div className="sim-detail">
+                <div className="sim-detail__header">
+                  <h3 className="sim-detail__title">🏆 {results[0].metier.titre}</h3>
+                  <span className="sim-detail__badge">{results[0].duree}</span>
+                </div>
+                <p className="sim-detail__desc">{results[0].metier.description}</p>
+                <div className="sim-detail__meta">
+                  <div className="sim-detail__meta-item">
+                    <span className="sim-detail__meta-label">💰 Salaire</span>
+                    <span className="sim-detail__meta-value">{results[0].salaire}</span>
+                  </div>
+                  <div className="sim-detail__meta-item">
+                    <span className="sim-detail__meta-label">📈 Évolution</span>
+                    <span className="sim-detail__meta-value">{results[0].metier.evolution}</span>
+                  </div>
+                </div>
+                <div className="sim-detail__tags">
+                  <span className="sim-detail__tag-label">🏫 Écoles</span>
+                  <div className="sim-detail__tags-list">
+                    {results[0].ecoles.map(e => <span key={e} className="sim-detail__tag">{e}</span>)}
+                  </div>
+                </div>
+                <div className="sim-detail__tags">
+                  <span className="sim-detail__tag-label">📋 Compétences clés</span>
+                  <div className="sim-detail__tags-list">
+                    {results[0].competences.map(c => <span key={c} className="sim-detail__tag sim-detail__tag--comp">{c}</span>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="sim-nav">
+              <button className="sim-btn sim-btn--back" onClick={reset}>🔄 Recommencer</button>
+              <a className="sim-btn sim-btn--whatsapp" href={`https://wa.me/212709058198?text=${encodeURIComponent(`Bonjour ComeToStudy ! Suite à ma simulation, mon top parcours est : ${results[0].metier.titre} (score ${results[0].score}%). Je souhaite un rendez-vous d'orientation.`)}`} target="_blank" rel="noopener noreferrer">📞 Prendre RDV WhatsApp</a>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // ─── SLIDE 11: Thank You / Merci + Contact ─────────────────
 
 const CONTACT_EMAIL = 'cometostudy1@gmail.com';
@@ -1751,6 +2127,7 @@ const Presentation = () => (
     <Slide backgroundColor="#b4c4e6" padding={0}><ErreursSlideContent /></Slide>
     <Slide backgroundColor="#0a1628" padding={0}><SolutionSlideContent /></Slide>
     <Slide backgroundColor="#7ab4f2" padding={0}><WhyUsSlideContent /></Slide>
+    <Slide backgroundColor="#dfe9f8" padding={0}><SimulatorSlideContent /></Slide>
     <Slide backgroundColor="#a8bce8" padding={0}><ThankYouSlideContent /></Slide>
   </Deck>
 );
